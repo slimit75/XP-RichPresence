@@ -54,7 +54,7 @@ function refresh()
         ["largeImageKey"] = image,
         ["largeImageText"] = acfIcao,
         ["smallImageKey"] = "xp",
-        ["smallImageText"] = "v0.2a (Unreleased)"
+        ["smallImageText"] = "v0.2a"
     })
 end
 
