@@ -7,7 +7,7 @@ Discord Rich Presence for X-Plane 11.
 - Copy all files and paste them into X-Plane 11\Resources\plugins\FlyWithLua\
 ## List of aircraft types with images
 - Embraer E-Jets (E170, E195 only currently)
-###Comming Soon:
+### Comming Soon:
 - Robin DR401
 - Boeing 737NG
 - Boeing 757
