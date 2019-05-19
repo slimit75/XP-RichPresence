@@ -1,5 +1,16 @@
 local ffi = require "ffi"
-local discordRPClib = ffi.load("discord-rpc")
+local libPath
+if SYSTEM == "IBM" then
+	libPath = "Resources/plugins/FlyWithLua/Modules/discord-rpc"
+	if SYSTEM_ARCHITECTURE == 64 then
+		libPath = libPath .. "_64"
+	end
+elseif SYSTEM == "LIN" then
+    libPath = "discord-rpc"
+else
+    error("Unsupported platform")
+end
+local discordRPClib = ffi.load(libPath)
 
 ffi.cdef[[
 typedef struct DiscordRichPresence {
