@@ -9,13 +9,19 @@ function refresh()
     dataref("acfIcao", "sim/aircraft/view/acf_ICAO", "readable")
     dataref("kts", "sim/flightmodel/position/indicated_airspeed", "readable")
     dataref("kts2", "sim/flightmodel/position/indicated_airspeed2", "readable")
-    dataref("altitude", "sim/flightmodel/position/elevation", "readable")
-    altitude = altitude * 3.28084
+    dataref("alt", "sim/cockpit2/gauges/indicators/altitude_ft_pilot", "readable")
+    dataref("alt2", "sim/cockpit2/gauges/indicators/altitude_ft_copilot", "readable")
 
     if (kts ~= kts2) then
         kts = "SPD DISAGREE"
     else
         kts = math.floor(kts) .. "kts"
+    end
+
+    if (alt ~= alt2) then
+        altitude = "ALT DISAGREE"
+    else
+        altitude = math.floor(alt) .. "ft"
     end
 
     if (acfIcao == "E170") then
@@ -45,16 +51,36 @@ function refresh()
     elseif (acfIcao == "B739") then
         aircraft = "Boeing 737-900ER"
         image = "737ng"
+    elseif (acfIcao == "A318") then
+        aircraft = "Airbus A318"
+        image = "a320"
+    elseif (acfIcao == "A319") then
+        aircraft = "Airbus A319"
+        image = "a320"
+    elseif (acfIcao == "A320") then
+        aircraft = "Airbus A320"
+        image = "a320"
+    elseif (acfIcao == "A321") then
+        aircraft = "Airbus A321"
+        image = "a320"
+    elseif (acfIcao == "B752") then
+        aircraft = "Boeing 757-200"
+        image = "b757"
+    elseif (acfIcao == "B753") then
+        aircraft = "Boeing 757-300"
+        image = "b757"
+    else
+        aircraft = acf
     end
 
     discordRPC.updatePresence({
-        ["state"] = math.floor(altitude) .. "ft, " .. kts,
+        ["state"] = altitude .. ", " .. kts,
         ["details"] = aircraft,
         ["startTimestamp"] = startTime,
         ["largeImageKey"] = image,
         ["largeImageText"] = acfIcao,
         ["smallImageKey"] = "xp",
-        ["smallImageText"] = "v0.2a"
+        ["smallImageText"] = "v0.3a"
     })
 end
 

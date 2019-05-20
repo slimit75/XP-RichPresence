@@ -6,15 +6,20 @@ Discord Rich Presence for X-Plane 11.
 ## How to install
 - Copy all files and paste them into X-Plane 11\Resources\plugins\FlyWithLua\
 ## Changelog
+### v0.3 (This Release)
+- ALT DISAGREE Feature, simular to SPD DISAGREE
+- Added support for A320 and 757
+- Bug fix for no aircraft type displayed for unsupported aircraft
 ### v0.2
 - SPD DISAGREE replaces speed if a diffrence in indicated speed is shown
 - More aircraft supported
 ## List of aircraft types with images
-- Embraer E-Jets (E175, E190 now supported)
+- Embraer E-Jets
 - Robin DR401
 - Cessna 172
 - Boeing 737NG
+- Boeing 757 (New)
+- Airbus A320 (New)
 ### Comming Soon:
-- Boeing 757
-- Airbus A320
 - MD-88
+- Dornier 328/328JET
