@@ -69,6 +69,15 @@ function refresh()
     elseif (acfIcao == "B753") then
         aircraft = "Boeing 757-300"
         image = "b757"
+    elseif (acfIcao == "MD82") then
+        aircraft = "McDonnell Douglass MD-82"
+        image = "md88"
+    elseif (acfIcao == "MD88") then
+        aircraft = "McDonnell Douglass MD-88"
+        image = "md88"
+    elseif (acfIcao == "D328") then
+        aircraft = "Dornier 328"
+        image = "d328"
     else
         aircraft = acf
     end
@@ -80,7 +89,7 @@ function refresh()
         ["largeImageKey"] = image,
         ["largeImageText"] = acfIcao,
         ["smallImageKey"] = "xp",
-        ["smallImageText"] = "v0.3a"
+        ["smallImageText"] = "v0.4a"
     })
 end
 
