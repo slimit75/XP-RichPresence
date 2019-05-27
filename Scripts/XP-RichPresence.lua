@@ -39,7 +39,7 @@ function refresh()
     end
 
     if (acfIcao == "E170") or (acfIcao == "E175") or (acfIcao == "E190") or (acfIcao == "E195") then
-        aircraft = "Embraer " ... acfIcao
+        aircraft = "Embraer " .. acfIcao
         image = "e-jets"
         altDisagree = false
     elseif (acfIcao == "DR40") then
@@ -50,7 +50,7 @@ function refresh()
         image = "c172"
     elseif (acfIcao == "B737") or (acfIcao == "B738") or (acfIcao == "B739") then
         temp = string.sub(acfIcao, 4, -1)
-        aircraft = "Boeing 737-" ... temp ... "00"
+        aircraft = "Boeing 737-" .. temp .. "00"
         image = "737ng"
     elseif (acfIcao == "B744") then
         aircraft = "Boeing 747-400"
@@ -68,7 +68,7 @@ function refresh()
         aircraft = "Boeing 757-300"
         image = "b757"
     elseif (acfIcao == "MD82") or (acfIcao == "MD88") then
-        aircraft = "McDonnell Douglass " ... acfIcao
+        aircraft = "McDonnell Douglass " .. acfIcao
         image = "md88"
     elseif (acfIcao == "D328") then
         aircraft = "Dornier 328"
