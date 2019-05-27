@@ -28,7 +28,7 @@ function refresh()
         kts = math.floor(kts) .. "kts"
     end
 
-    if (altDisagree == false) then
+    if (altDisagree == true) then
         if (alt ~= alt2) then
             altitude = "ALT DISAGREE"
         else
@@ -77,10 +77,10 @@ function refresh()
         aircraft = acf
     end
 
-    if (classicDetails == true) then
+    if (classicDetails == false) then
         discordRPC.updatePresence({
             ["state"] = altitude .. ", " .. kts,
-            ["details"] = aircraft .. " (" .. string.sub(tailNum, 3, -1) .. ")",
+            ["details"] = aircraft .. " (" .. tailNum .. ")",
             ["startTimestamp"] = startTime,
             ["largeImageKey"] = image,
             ["largeImageText"] = acfIcao,
