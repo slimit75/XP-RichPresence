@@ -1,5 +1,10 @@
-discordRPC = require "discordRPC"
+-- Configuration
+spdDisagree = true -- Enables SPD DISAGREE warning.
+altDisagree = true -- Enables ALT DISAGREE warning.
+classicDetails = false -- Disables showing the Tail Number. More functionality soon.
 
+-- Program, dont touch unless you know what you are doing!
+discordRPC = require "discordRPC"
 startTime = os.time()
 aircraft = "N/A"
 image = "na"
@@ -7,19 +12,28 @@ image = "na"
 function refresh()
     dataref("acf", "sim/aircraft/view/acf_descrip", "readable")
     dataref("acfIcao", "sim/aircraft/view/acf_ICAO", "readable")
+    dataref("tailNum", "sim/aircraft/view/acf_tailnum", "readable")
     dataref("kts", "sim/flightmodel/position/indicated_airspeed", "readable")
     dataref("kts2", "sim/flightmodel/position/indicated_airspeed2", "readable")
     dataref("alt", "sim/cockpit2/gauges/indicators/altitude_ft_pilot", "readable")
     dataref("alt2", "sim/cockpit2/gauges/indicators/altitude_ft_copilot", "readable")
 
-    if (kts ~= kts2) then
-        kts = "SPD DISAGREE"
+    if (spdDisagree == true) then
+        if (kts ~= kts2) then
+            kts = "SPD DISAGREE"
+        else
+            kts = math.floor(kts) .. "kts"
+        end
     else
         kts = math.floor(kts) .. "kts"
     end
 
-    if (alt ~= alt2) then
-        altitude = "ALT DISAGREE"
+    if (altDisagree == false) then
+        if (alt ~= alt2) then
+            altitude = "ALT DISAGREE"
+        else
+            altitude = math.floor(alt) .. "ft"
+        end
     else
         altitude = math.floor(alt) .. "ft"
     end
@@ -27,15 +41,19 @@ function refresh()
     if (acfIcao == "E170") then
         aircraft = "Embraer E170"
         image = "e-jets"
+        altDisagree = false
     elseif (acfIcao == "E175") then
         aircraft = "Embrear E175"
         image = "e-jets"
+        altDisagree = false
     elseif (acfIcao == "E190") then
         aircraft = "Embrear E190"
         image = "e-jets"
+        altDisagree = false
     elseif (acfIcao == "E195") then
         aircraft = "Embrear E195"
         image = "e-jets"
+        altDisagree = false
     elseif (acfIcao == "DR40") then
         aircraft = "Robin DR401"
         image = "dr40"
@@ -82,15 +100,27 @@ function refresh()
         aircraft = acf
     end
 
-    discordRPC.updatePresence({
-        ["state"] = altitude .. ", " .. kts,
-        ["details"] = aircraft,
-        ["startTimestamp"] = startTime,
-        ["largeImageKey"] = image,
-        ["largeImageText"] = acfIcao,
-        ["smallImageKey"] = "xp",
-        ["smallImageText"] = "v0.4a"
-    })
+    if (classicDetails == true) then
+        discordRPC.updatePresence({
+            ["state"] = altitude .. ", " .. kts,
+            ["details"] = aircraft .. " (" .. string.sub(tailNum, 3, -1) .. ")",
+            ["startTimestamp"] = startTime,
+            ["largeImageKey"] = image,
+            ["largeImageText"] = acfIcao,
+            ["smallImageKey"] = "xp",
+            ["smallImageText"] = "v0.5a"
+        })
+    else
+        discordRPC.updatePresence({
+            ["state"] = altitude .. ", " .. kts,
+            ["details"] = aircraft,
+            ["startTimestamp"] = startTime,
+            ["largeImageKey"] = image,
+            ["largeImageText"] = acfIcao,
+            ["smallImageKey"] = "xp",
+            ["smallImageText"] = "v0.5a"
+        })
+    end
 end
 
 function run()
