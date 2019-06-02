@@ -85,7 +85,7 @@ function refresh()
             ["largeImageKey"] = image,
             ["largeImageText"] = acfIcao,
             ["smallImageKey"] = "xp",
-            ["smallImageText"] = "v0.5a"
+            ["smallImageText"] = "v0.6b"
         })
     else
         discordRPC.updatePresence({
