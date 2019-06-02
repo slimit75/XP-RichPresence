@@ -6,7 +6,7 @@ Discord Rich Presence for X-Plane 11.
 ## How to install
 - Copy all files and paste them into X-Plane 11\Resources\plugins\FlyWithLua\
 ## Whats new
-### v0.5a (Entered Testing 5.27.2019)
+### v0.5a (5.27.2019)
 - Final alpha
 - Added icons for 747-400, 747-8
 - Added basic configuration
