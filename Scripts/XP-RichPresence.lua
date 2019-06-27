@@ -1,13 +1,13 @@
 -- Configuration
 spdDisagree = true -- Enables SPD DISAGREE warning.
 altDisagree = true -- Enables ALT DISAGREE warning.
-classicDetails = false -- Disables showing the Tail Number. More functionality soon.
 
 -- Program, dont touch unless you know what you are doing!
 discordRPC = require "discordRPC"
 startTime = os.time()
 aircraft = "N/A"
-image = "na"
+image = "xp"
+version = "v0.6b"
 
 function refresh()
     dataref("acf", "sim/aircraft/view/acf_descrip", "readable")
@@ -64,9 +64,11 @@ function refresh()
     elseif (acfIcao == "B752") then
         aircraft = "Boeing 757-200"
         image = "b757"
+        altDisagree = false
     elseif (acfIcao == "B753") then
         aircraft = "Boeing 757-300"
         image = "b757"
+        altDisagree = false
     elseif (acfIcao == "MD82") or (acfIcao == "MD88") then
         aircraft = "McDonnell Douglass " .. acfIcao
         image = "md88"
@@ -77,15 +79,15 @@ function refresh()
         aircraft = acf
     end
 
-    if (classicDetails == false) then
+    if image ~= "xp" then
         discordRPC.updatePresence({
             ["state"] = altitude .. ", " .. kts,
-            ["details"] = aircraft .. " (" .. tailNum .. ")",
+            ["details"] = aircraft,
             ["startTimestamp"] = startTime,
             ["largeImageKey"] = image,
             ["largeImageText"] = acfIcao,
             ["smallImageKey"] = "xp",
-            ["smallImageText"] = "v0.6b"
+            ["smallImageText"] = version
         })
     else
         discordRPC.updatePresence({
@@ -94,8 +96,7 @@ function refresh()
             ["startTimestamp"] = startTime,
             ["largeImageKey"] = image,
             ["largeImageText"] = acfIcao,
-            ["smallImageKey"] = "xp",
-            ["smallImageText"] = "v0.5a"
+            ["smallImageText"] = version
         })
     end
 end
