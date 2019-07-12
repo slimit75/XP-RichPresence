@@ -1,5 +1,6 @@
 # XP-RichPresence
 Discord Rich Presence for X-Plane 11.
+Based on https://github.com/leonardus/XP-RPC
 ## Requirements
 - X-Plane 11
 - FlyWithLua NG (Tested on v2.7.17) (https://forums.x-plane.org/index.php?/files/file/38445-flywithlua-ng-next-generation-edition-for-x-plane-11-win-lin-mac/)
