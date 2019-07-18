@@ -38,43 +38,85 @@ function refresh()
         altitude = math.floor(alt) .. "ft"
     end
 
-    if (acfIcao == "E170") or (acfIcao == "E175") or (acfIcao == "E190") or (acfIcao == "E195") then
+    if (acfIcao == "E170") or (acfIcao == "E175") or (acfIcao == "E190") or (acfIcao == "E195") then -- Embrear E-Jets
         aircraft = "Embraer " .. acfIcao
         image = "e-jets"
         altDisagree = false
-    elseif (acfIcao == "DR40") then
+    elseif (acfIcao == "DR40") then -- Robin DR400/DR401
         aircraft = "Robin DR401"
         image = "dr40"
-    elseif (acfIcao == "C172") then
+    elseif (acfIcao == "C172") then -- Cessna 172
         aircraft = "Cessna 172 Skyhawk"
         image = "c172"
-    elseif (acfIcao == "B737") or (acfIcao == "B738") or (acfIcao == "B739") then
+    elseif (acfIcao == "B733") or (acfIcao == "B734") or (acfIcao == "B735") or (acfIcao == "B736") or (acfIcao == "B737") or (acfIcao == "B738") or (acfIcao == "B739") then -- 737 Classic & 737NG
         temp = string.sub(acfIcao, 4, -1)
         aircraft = "Boeing 737-" .. temp .. "00"
         image = "737ng"
-    elseif (acfIcao == "B744") then
+    elseif (acfIcao == "B744") then -- Boeing 747-400
         aircraft = "Boeing 747-400"
         image = "747"
-    elseif (acfIcao == "B748") then
+    elseif (acfIcao == "B748") then -- Boeing 747-8
         aircraft = "Boeing 747-8"
         image = "747"
-    elseif (acfIcao == "A318") or (acfIcao == "A319") or (acfIcao == "A320") or (acfIcao == "A321") then
+    elseif (acfIcao == "A318") or (acfIcao == "A319") or (acfIcao == "A320") or (acfIcao == "A321") then -- Airbus A320 Family
         aircraft = "Airbus " .. acfIcao
         image = "a320"
-    elseif (acfIcao == "B752") then
-        aircraft = "Boeing 757-200"
+    elseif (acfIcao == "B752") or (acfIcao == "B753") then -- Boeing 757
+        temp = string.sub(acfIcao, 4, -1)
+        aircraft = "Boeing 757-" .. temp .. "00"
         image = "b757"
         altDisagree = false
-    elseif (acfIcao == "B753") then
-        aircraft = "Boeing 757-300"
-        image = "b757"
-        altDisagree = false
-    elseif (acfIcao == "MD82") or (acfIcao == "MD88") then
+    elseif (acfIcao == "MD82") or (acfIcao == "MD88") then -- MD80
         aircraft = "McDonnell Douglass " .. acfIcao
         image = "md88"
-    elseif (acfIcao == "D328") then
+    elseif (acfIcao == "B712") then -- Boeing 717-200
+        aircraft = "Boeing 717-200"
+        image = "md88"
+    elseif (acfIcao == "D328") or (acfIcao == "J328") then -- Dornier 328/328JET
         aircraft = "Dornier 328"
         image = "d328"
+    elseif (acfIcao == "B772") or (acfIcao == "B773") then -- Boeing 777-200/-300
+        temp = string.sub(acfIcao, 4, -1)
+        aircraft = "Boeing 777-" .. temp .. "00"
+        image = "773"
+        altDisagree = false
+    elseif (acfIcao == "UAE") then -- Support for Chai112/Chai112-s-Boeing-777-300ER
+        temp = string.sub(acfIcao, 4, -1)
+        aircraft = "Boeing 777-300ER"
+        image = "773"
+        acfIcao = "B77W"
+        altDisagree = false
+    elseif (acfIcao == "B778") or (acfIcao == "B779") then -- Boeing 777-8/-9
+        temp = string.sub(acfIcao, 4, -1)
+        aircraft = "Boeing 777-" .. temp
+        image = "773"
+        altDisagree = false
+    elseif (acfIcao == "B77L") then -- Boeing 777F / 777-200LR
+        aircraft = "Boeing 777-200LR / 777F"
+        image = "773"
+        altDisagree = false
+    elseif (acfIcao == "B77W") then -- Boeing 777-300ER
+        aircraft = "Boeing 777-300ER"
+        image = "773"
+        altDisagree = false
+    elseif (acfIcao == "B762") or (acfIcao == "B763") then -- Boeing 767-200/300
+        temp = string.sub(acfIcao, 4, -1)
+        aircraft = "Boeing 767-" .. temp .. "00"
+        image = "773"
+        altDisagree = false
+    elseif (acfIcao == "B764") then -- Boeing 767-400ER
+        aircraft = "Boeing 767-400ER"
+        image = "773"
+        altDisagree = false
+    elseif (acfIcao == "B788") or (acfIcao == "B789") then -- Boeing 787-8/-9
+        temp = string.sub(acfIcao, 4, -1)
+        aircraft = "Boeing 787-" .. temp
+        image = "787"
+        altDisagree = false
+    elseif (acfIcao == "B78X") then -- Boeing 787-10
+        aircraft = "Boeing 787-10"
+        image = "787"
+        altDisagree = false
     else
         aircraft = acf
     end
