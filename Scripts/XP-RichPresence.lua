@@ -7,7 +7,7 @@ discordRPC = require "discordRPC"
 startTime = os.time()
 aircraft = "N/A"
 image = "xp"
-version = "v0.6b"
+version = "v0.7.1b"
 
 function refresh()
     dataref("acf", "sim/aircraft/view/acf_descrip", "readable")
