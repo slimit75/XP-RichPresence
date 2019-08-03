@@ -7,7 +7,7 @@ discordRPC = require "discordRPC"
 startTime = os.time()
 aircraft = "N/A"
 image = "xp"
-version = "v0.8"
+version = "v0.8.1"
 
 function refresh()
     acf = get("sim/aircraft/view/acf_descrip")
@@ -26,7 +26,7 @@ function refresh()
 
     if (altDisagree == true) then
         if (alt ~= alt2) then
-            altitude = "ALT DISAGREE"
+            alt = "ALT DISAGREE"
         end
     end
 
@@ -147,7 +147,7 @@ function refresh()
 
     if image ~= "xp" then
         discordRPC.updatePresence({
-            ["state"] = altitude .. ", " .. kts,
+            ["state"] = alt .. ", " .. kts,
             ["details"] = aircraft,
             ["startTimestamp"] = startTime,
             ["largeImageKey"] = image,
@@ -157,7 +157,7 @@ function refresh()
         })
     else
         discordRPC.updatePresence({
-            ["state"] = altitude .. ", " .. kts,
+            ["state"] = alt .. ", " .. kts,
             ["details"] = aircraft,
             ["startTimestamp"] = startTime,
             ["largeImageKey"] = image,
