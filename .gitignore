@@ -2,3 +2,5 @@ XP-RichPresence.*
 pch.*
 framework.h
 .vs/*
+# for now, all C++ files will not be included in github.
+*.cpp
