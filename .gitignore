@@ -4,5 +4,4 @@ framework.h
 .vs/*
 SDK/*
 x64/*
-# for now, all C++ files will not be included in github.
-*.cpp
+!XP-RichPresence.xpl
