@@ -1,5 +1,5 @@
-// Downloaded from https://developer.x-plane.com/code-sample/hello-world-sdk-3/
-
+// XP-RP by Speed_Limit75
+// This document is based off of the "Hello World!" tutorial on the X-Plane Developer Website
 
 #include "XPLMDisplay.h"
 #include "XPLMGraphics.h"

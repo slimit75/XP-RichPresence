@@ -5,3 +5,4 @@ framework.h
 SDK/*
 x64/*
 !XP-RichPresence.xpl
+!XP-RichPresence.vcxproj
