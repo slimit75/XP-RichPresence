@@ -7,13 +7,17 @@
 // Dependencies (almost all from X-Plane SDK)
 #include "XPLMDisplay.h"
 #include "XPLMGraphics.h"
+#include "XPUIGraphics.h"
 #include "XPLMMenus.h"
+#include "XPLMPlanes.h"
+#include "XPLMDataAccess.h"
 #include <string.h>
 
 // OS-specific Dependencies (OpenGL?)
 #if IBM
 	#include <windows.h>
 #endif
+
 #if LIN
 	#include <GL/gl.h>
 #elif __GNUC__
@@ -22,7 +26,7 @@
 	#include <GL/gl.h>
 #endif
 
-// Incase 
+// Error incase wrong X-Plane SDK version is used
 #ifndef XPLM300
 	#error This is made to be compiled against the XPLM300 SDK
 #endif
@@ -114,6 +118,7 @@ void draw_settings(XPLMWindowID in_window_id, void* in_refcon) {
 	float col_white[] = { 1.0, 1.0, 1.0 };
 
 	XPLMDrawString(col_white, l + 10, t - 20, "This is the future settings window.", NULL, xplmFont_Proportional); // text warning of lack of functionality
+	XPDrawElement(1, 1, 1, 1, xpElement_CheckBox, 0);
 	
 }
 
@@ -125,11 +130,26 @@ void menu_handler(void* in_menu_ref, void* in_item_ref) {
 	}
 }
 
+char* getAircraft() {
+	byte AircraftICAO[40];
+	static XPLMDataRef AircraftICAO_df = XPLMFindDataRef("sim/aircraft/view/acf_ICAO");
+	XPLMGetDatab(AircraftICAO_df, AircraftICAO, 0, 40);
+
+	char* AircraftICAOa = (char*)AircraftICAO[40];
+
+	return AircraftICAOa;
+	//XPLMGetAircraft
+}
+
 char* getAircraftIcon() {
-	if (true) {
-		return "xp";
-	} else if (false) {
-		return "xp";
+	char* acfIcao = getAircraft();
+
+	if ((acfIcao == "E170") && (acfIcao == "E175") && (acfIcao == "E190") && (acfIcao == "E195"))  {
+		return "e-jets";
+	} else if (acfIcao == "DR40") {
+		return "dr40";
+	} else if (acfIcao == "C172") {
+		return "c172";
 	} else {
 		return "xp";
 	}
