@@ -4,17 +4,6 @@
 	his file was also made with 2 brain cells
 */
 
-/* ############ TO DO ############ 
-	- Make the menu work
-	- Make the settings work
-	- Make the Discord Rich Presense work
-	- Make the thing correctly identify the aircraft type
-	- Get Altitude
-	- Get Airspeed
-	- Set Start Time
-	- Get Aircraft ICAO
-*/
-
 // Dependencies (almost all from X-Plane SDK)
 #include "XPLMDisplay.h"
 #include "XPLMGraphics.h"
@@ -125,6 +114,7 @@ void draw_settings(XPLMWindowID in_window_id, void* in_refcon) {
 	float col_white[] = { 1.0, 1.0, 1.0 };
 
 	XPLMDrawString(col_white, l + 10, t - 20, "This is the future settings window.", NULL, xplmFont_Proportional); // text warning of lack of functionality
+	
 }
 
 void menu_handler(void* in_menu_ref, void* in_item_ref) {
@@ -137,9 +127,9 @@ void menu_handler(void* in_menu_ref, void* in_item_ref) {
 
 char* getAircraftIcon() {
 	if (true) {
-
+		return "xp";
 	} else if (false) {
-
+		return "xp";
 	} else {
 		return "xp";
 	}
