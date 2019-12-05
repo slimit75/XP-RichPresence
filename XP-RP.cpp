@@ -46,6 +46,52 @@ int g_menu_container_idx;
 XPLMMenuID g_menu_id;
 void menu_handler(void*, void*);
 
+char* getAircraft() {
+	byte AircraftICAO[40];
+	static XPLMDataRef AircraftICAO_df = XPLMFindDataRef("sim/aircraft/view/acf_ICAO");
+	XPLMGetDatab(AircraftICAO_df, AircraftICAO, 0, 40);
+
+	char* AircraftICAOa = (char*)AircraftICAO[40];
+
+	return AircraftICAOa;
+	//XPLMGetAircraft
+}
+
+char* getAircraftIcon() {
+	char* acfIcao = getAircraft();
+
+	if ((acfIcao == "E170") && (acfIcao == "E175") && (acfIcao == "E190") && (acfIcao == "E195")) {
+		return "e-jets";
+	}
+	else if (acfIcao == "DR40") {
+		return "dr40";
+	}
+	else if (acfIcao == "C172") {
+		return "c172";
+	}
+	else if ((acfIcao == "B733") && (acfIcao == "B734") && (acfIcao == "B735") && (acfIcao == "B736") && (acfIcao == "B737") && (acfIcao == "B738") && (acfIcao == "B739")) {
+		return "737ng";
+	}
+	else if ((acfIcao == "B741") && (acfIcao == "B742") && (acfIcao == "B743") && (acfIcao == "B744") && (acfIcao == "B748")) {
+		return "747";
+	}
+	else if ((acfIcao == "A318") && (acfIcao == "A319") && (acfIcao == "A320") && (acfIcao == "A321")) {
+		return "a320";
+	}
+	else if ((acfIcao == "B752") && (acfIcao == "B753")) {
+		return "b757";
+	}
+	else if ((acfIcao == "MD82") && (acfIcao == "MD88") && (acfIcao == "b712")) {
+		return "md88";
+	}
+	else if ((acfIcao == "D328") && (acfIcao == "J328")) {
+		return "d328";
+	}
+	else {
+		return "xp";
+	}
+}
+
 PLUGIN_API int XPluginStart(char* outName, char* outSig, char* outDesc) {
 	strcpy(outName, "XP-RichPresence");
 	strcpy(outSig, "sl75.xp.richpresence");
@@ -107,6 +153,7 @@ void draw_main_window(XPLMWindowID in_window_id, void* in_refcon) {
 	float col_white[] = { 1.0, 1.0, 1.0 };
 
 	XPLMDrawString(col_white, l + 10, t - 20, "This version of the plugin does nothing so far. You can close this window.", NULL, xplmFont_Proportional); // text warning of lack of functionality
+	XPLMDebugString(getAircraftIcon());
 }
 
 void draw_settings(XPLMWindowID in_window_id, void* in_refcon) {
@@ -127,42 +174,5 @@ void menu_handler(void* in_menu_ref, void* in_item_ref) {
 		void draw_main_window(XPLMWindowID in_window_id, void* in_refcon);
 	} else if (!strcmp((const char*)in_item_ref, "Menu Item 2")) {
 		void draw_settings(XPLMWindowID in_window_id, void* in_refcon);
-	}
-}
-
-char* getAircraft() {
-	byte AircraftICAO[40];
-	static XPLMDataRef AircraftICAO_df = XPLMFindDataRef("sim/aircraft/view/acf_ICAO");
-	XPLMGetDatab(AircraftICAO_df, AircraftICAO, 0, 40);
-
-	char* AircraftICAOa = (char*)AircraftICAO[40];
-
-	return AircraftICAOa;
-	//XPLMGetAircraft
-}
-
-char* getAircraftIcon() {
-	char* acfIcao = getAircraft();
-
-	if ((acfIcao == "E170") && (acfIcao == "E175") && (acfIcao == "E190") && (acfIcao == "E195"))  {
-		return "e-jets";
-	} else if (acfIcao == "DR40") {
-		return "dr40";
-	} else if (acfIcao == "C172") {
-		return "c172";
-	} else if ((acfIcao == "B733") && (acfIcao == "B734") && (acfIcao == "B735") && (acfIcao == "B736") && (acfIcao == "B737") && (acfIcao == "B738") && (acfIcao == "B739")) {
-		return "737ng";
-	} else if ((acfIcao == "B741") && (acfIcao == "B742") && (acfIcao == "B743") && (acfIcao == "B744") && (acfIcao == "B748")) {
-		return "747";
-	} else if ((acfIcao == "A318") && (acfIcao == "A319") && (acfIcao == "A320") && (acfIcao == "A321")) {
-		return "a320";
-	} else if ((acfIcao == "B752") && (acfIcao == "B753")) {
-		return "b757";
-	} else if ((acfIcao == "MD82") && (acfIcao == "MD88") && (acfIcao == "b712")) {
-		return "md88";
-	} else if ((acfIcao == "D328") && (acfIcao == "J328")) {
-		return "d328";
-	} else {
-		return "xp";
 	}
 }
