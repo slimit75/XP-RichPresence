@@ -12,6 +12,7 @@
 #include "XPLMPlanes.h"
 #include "XPLMDataAccess.h"
 #include <string.h>
+#include <string>
 
 // OS-specific Dependencies (OpenGL?)
 #if IBM
@@ -46,19 +47,13 @@ int g_menu_container_idx;
 XPLMMenuID g_menu_id;
 void menu_handler(void*, void*);
 
-char* getAircraft() {
+char* getAircraftIcon() {
 	byte AircraftICAO[40];
 	static XPLMDataRef AircraftICAO_df = XPLMFindDataRef("sim/aircraft/view/acf_ICAO");
-	XPLMGetDatab(AircraftICAO_df, AircraftICAO, 0, 40);
+	char* acfIcao= (char*)AircraftICAO;
 
-	char* AircraftICAOa = (char*)AircraftICAO[40];
-
-	return AircraftICAOa;
-	//XPLMGetAircraft
-}
-
-char* getAircraftIcon() {
-	char* acfIcao = getAircraft();
+	XPLMDebugString("XP-RP: ");
+	XPLMDebugString(acfIcao);
 
 	if ((acfIcao == "E170") && (acfIcao == "E175") && (acfIcao == "E190") && (acfIcao == "E195")) {
 		return "e-jets";
@@ -101,9 +96,11 @@ PLUGIN_API int XPluginStart(char* outName, char* outSig, char* outDesc) {
 	g_menu_container_idx = XPLMAppendMenuItem(XPLMFindPluginsMenu(), "XP-RichPresence", 0, 0);
 	g_menu_id = XPLMCreateMenu("XP-RichPresence", XPLMFindPluginsMenu(), g_menu_container_idx, menu_handler, NULL);
 	XPLMAppendMenuItem(g_menu_id, "Re-Configure Flight", (void*)"Menu Item 1", 1);
-	XPLMAppendMenuSeparator(g_menu_id);
 	XPLMAppendMenuItem(g_menu_id, "Toggle Settings", (void*)"Menu Item 2", 1);
-	
+	XPLMAppendMenuSeparator(g_menu_id);
+	XPLMAppendMenuItem(g_menu_id, "Reload Plugin", (void*)"Menu Item 3", 1);
+	XPLMAppendMenuItem(g_menu_id, "Test Aircraft Icon Logic (outputs to Log.txt)", (void*)"Menu Item 4", 1);
+
 	// Inital Window
 	XPLMCreateWindow_t params;
 	params.structSize = sizeof(params);
@@ -153,7 +150,6 @@ void draw_main_window(XPLMWindowID in_window_id, void* in_refcon) {
 	float col_white[] = { 1.0, 1.0, 1.0 };
 
 	XPLMDrawString(col_white, l + 10, t - 20, "This version of the plugin does nothing so far. You can close this window.", NULL, xplmFont_Proportional); // text warning of lack of functionality
-	XPLMDebugString(getAircraftIcon());
 }
 
 void draw_settings(XPLMWindowID in_window_id, void* in_refcon) {
@@ -174,5 +170,10 @@ void menu_handler(void* in_menu_ref, void* in_item_ref) {
 		void draw_main_window(XPLMWindowID in_window_id, void* in_refcon);
 	} else if (!strcmp((const char*)in_item_ref, "Menu Item 2")) {
 		void draw_settings(XPLMWindowID in_window_id, void* in_refcon);
+	} else if (!strcmp((const char*)in_item_ref, "Menu Item 3")) {
+		void draw_settings(XPLMWindowID in_window_id, void* in_refcon);
+	} else if (!strcmp((const char*)in_item_ref, "Menu Item 4")) {
+		XPLMDebugString("XP-RP: ");
+		XPLMDebugString(getAircraftIcon());
 	}
 }
