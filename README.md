@@ -5,7 +5,7 @@ Based on https://github.com/leonardus/XP-RPC
 **This branch is for the development of v0.9, where XP-RichPresence will be moved to its own X-Plane plugin.**
 
 ## Requirements (v0.9 and up)
-- Windows x64 (x32 coming later) (tested on Windows 10)
+- Windows x64/64-bit (x86/32-bit coming later) (tested on Windows 10)
 (other platforms coming later)
 
 ## Requirements (v0.8.1 and below)
