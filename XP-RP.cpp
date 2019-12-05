@@ -114,7 +114,7 @@ void menu_handler(void* in_menu_ref, void* in_item_ref)
 {
 	if (!strcmp((const char*)in_item_ref, "Menu Item 1"))
 	{
-		return; //XPLMCommandOnce(XPLMFindCommand("sim/operation/toggle_settings_window"));
+		return; // draw_hello_world(XPLMWindowID in_window_id, void* in_refcon); MAY WORK, comment initally read: XPLMCommandOnce(XPLMFindCommand("sim/operation/toggle_settings_window"));
 	}
 	else if (!strcmp((const char*)in_item_ref, "Menu Item 2"))
 	{
