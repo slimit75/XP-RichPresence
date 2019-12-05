@@ -79,10 +79,9 @@ PLUGIN_API int XPluginStart(
 
 PLUGIN_API void	XPluginStop(void)
 {
-	XPLMDestroyWindow(g_window);
+	XPLMDestroyWindow(g_window); // Destroy Window
 	g_window = NULL;
-
-	XPLMDestroyMenu(g_menu_id);
+	XPLMDestroyMenu(g_menu_id); // Destroy Menu
 }
 
 PLUGIN_API void XPluginDisable(void) { }
@@ -93,18 +92,17 @@ void	draw_hello_world(XPLMWindowID in_window_id, void* in_refcon)
 {
 	// Required: OpenGL State
 	XPLMSetGraphicsState(
-		0 /* no fog */,
-		0 /* 0 texture units */,
-		0 /* no lighting */,
-		0 /* no alpha testing */,
-		1 /* do alpha blend */,
-		1 /* do depth testing */,
-		0 /* no depth writing */
+		0, // no fog
+		0, // 0 texture units
+		0, // no lighting
+		0, // no alpha testing
+		1, // do alpha blend
+		1, // do depth testing
+		0  //  no depth writing
 	);
 
 	int l, t, r, b;
 	XPLMGetWindowGeometry(in_window_id, &l, &t, &r, &b);
-
 	float col_white[] = { 1.0, 1.0, 1.0 };
 
 	XPLMDrawString(col_white, l + 10, t - 20, "This version of the plugin does nothing so far. You can close this window.", NULL, xplmFont_Proportional); // text warning of lack of functionality
