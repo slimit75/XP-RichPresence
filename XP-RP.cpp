@@ -134,16 +134,3 @@ char* getAircraftIcon() {
 		return "xp";
 	}
 }
-
-/*
-	Note to self -
-
-	What the Discord RPC should look like (Code snippet from origional LUA script):
-
-	["state"] = alt .. ", " .. kts,
-	["details"] = aircraft, 
-	["startTimestamp"] = startTime,
-	["largeImageKey"] = image, (getAircraftIcon function will return correct aircraft icon)
-	["largeImageText"] = acfIcao,
-	["smallImageText"] = version
-*/
