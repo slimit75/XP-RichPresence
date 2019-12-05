@@ -1,8 +1,10 @@
-// XP-RP by Speed_Limit75
-// This file is based off of multiple sample codes on the X-Plane Developer Website
-// This file was also made with 2 brain cells
+/*
+	XP-RP by Speed_Limit75
+	This file is based off of multiple sample codes on the X-Plane Developer Website
+	his file was also made with 2 brain cells
+*/
 
-/* To Do
+/* ############ TO DO ############ 
 	- Make the menu work
 	- Make the settings work
 	- Make the Discord Rich Presense work
@@ -126,13 +128,10 @@ void draw_settings(XPLMWindowID in_window_id, void* in_refcon) {
 }
 
 void menu_handler(void* in_menu_ref, void* in_item_ref) {
-	if (!strcmp((const char*)in_item_ref, "Menu Item 1"))
-	{
-		return; // draw_main_window(XPLMWindowID in_window_id, void* in_refcon); MAY WORK, comment initally read: XPLMCommandOnce(XPLMFindCommand("sim/operation/toggle_settings_window"));
-	}
-	else if (!strcmp((const char*)in_item_ref, "Menu Item 2"))
-	{
-		return; // draw_settings(XPLMWindowID in_window_id, void* in_refcon); MAY WORK, comment initally read: XPLMCommandOnce(XPLMFindCommand("sim/operation/toggle_key_shortcuts_window"));
+	if (!strcmp((const char*)in_item_ref, "Menu Item 1")) {
+		void draw_main_window(XPLMWindowID in_window_id, void* in_refcon);
+	} else if (!strcmp((const char*)in_item_ref, "Menu Item 2")) {
+		void draw_settings(XPLMWindowID in_window_id, void* in_refcon);
 	}
 }
 
