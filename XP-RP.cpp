@@ -50,39 +50,46 @@ void menu_handler(void*, void*);
 char* getAircraftIcon() {
 	byte AircraftICAO[40];
 	static XPLMDataRef AircraftICAO_df = XPLMFindDataRef("sim/aircraft/view/acf_ICAO");
+	XPLMGetDatab(AircraftICAO_df, AircraftICAO, 0, 40);
 	char* acfIcao= (char*)AircraftICAO;
 
 	XPLMDebugString("XP-RP: ");
 	XPLMDebugString(acfIcao);
 
+
 	if ((acfIcao == "E170") && (acfIcao == "E175") && (acfIcao == "E190") && (acfIcao == "E195")) {
 		return "e-jets";
-	}
-	else if (acfIcao == "DR40") {
+	} else if (acfIcao == "DR40") {
 		return "dr40";
-	}
-	else if (acfIcao == "C172") {
+	} else if (acfIcao == "C172") {
 		return "c172";
-	}
-	else if ((acfIcao == "B733") && (acfIcao == "B734") && (acfIcao == "B735") && (acfIcao == "B736") && (acfIcao == "B737") && (acfIcao == "B738") && (acfIcao == "B739")) {
+	} else if ((acfIcao == "B733") && (acfIcao == "B734") && (acfIcao == "B735") && (acfIcao == "B736") && (acfIcao == "B737") && (acfIcao == "B738") && (acfIcao == "B739")) {
 		return "737ng";
-	}
-	else if ((acfIcao == "B741") && (acfIcao == "B742") && (acfIcao == "B743") && (acfIcao == "B744") && (acfIcao == "B748")) {
+	} else if ((acfIcao == "B741") && (acfIcao == "B742") && (acfIcao == "B743") && (acfIcao == "B744") && (acfIcao == "B748")) {
 		return "747";
-	}
-	else if ((acfIcao == "A318") && (acfIcao == "A319") && (acfIcao == "A320") && (acfIcao == "A321")) {
+	} else if ((acfIcao == "A318") && (acfIcao == "A319") && (acfIcao == "A320") && (acfIcao == "A321")) {
 		return "a320";
-	}
-	else if ((acfIcao == "B752") && (acfIcao == "B753")) {
+	} else if ((acfIcao == "B752") && (acfIcao == "B753")) {
 		return "b757";
-	}
-	else if ((acfIcao == "MD82") && (acfIcao == "MD88") && (acfIcao == "b712")) {
+	} else if ((acfIcao == "MD82") && (acfIcao == "MD88") && (acfIcao == "b712")) {
 		return "md88";
-	}
-	else if ((acfIcao == "D328") && (acfIcao == "J328")) {
+	} else if ((acfIcao == "D328") && (acfIcao == "J328")) {
 		return "d328";
-	}
-	else {
+	} else if ((acfIcao == "B772") && (acfIcao && "B773") && (acfIcao == "B778") && (acfIcao == "B779") && (acfIcao == "B77L") && (acfIcao == "B77W")) {
+		return "773";
+	} else if ((acfIcao == "B762") && (acfIcao == "B763") && (acfIcao == "B764")) {
+		return "773";
+	} else if ((acfIcao == "B788") && (acfIcao == "B789") && (acfIcao == "B78X")) {
+		return "787";
+	} else if ((acfIcao == "A332") && (acfIcao == "A333") && (acfIcao == "A337") && (acfIcao == "A338") && (acfIcao == "A339")) {
+		return "a330";
+	} else if ((acfIcao == "A342") && (acfIcao == "A343") && (acfIcao == "A345") && (acfIcao == "A346")) {
+		return "a340";
+	} else if (acfIcao == "A388") {
+		return "a380";
+	} else if ((acfIcao == "A359") && (acfIcao == "A35K")) {
+		return "a350";
+	} else {
 		return "xp";
 	}
 }
@@ -167,13 +174,12 @@ void draw_settings(XPLMWindowID in_window_id, void* in_refcon) {
 
 void menu_handler(void* in_menu_ref, void* in_item_ref) {
 	if (!strcmp((const char*)in_item_ref, "Menu Item 1")) {
-		void draw_main_window(XPLMWindowID in_window_id, void* in_refcon);
+		//draw_main_window(XPLMWindowID in_window_id, void* in_refcon);
 	} else if (!strcmp((const char*)in_item_ref, "Menu Item 2")) {
-		void draw_settings(XPLMWindowID in_window_id, void* in_refcon);
+		//draw_settings(XPLMWindowID in_window_id, void* in_refcon);
 	} else if (!strcmp((const char*)in_item_ref, "Menu Item 3")) {
-		void draw_settings(XPLMWindowID in_window_id, void* in_refcon);
+		//draw_settings(XPLMWindowID in_window_id, void* in_refcon);
 	} else if (!strcmp((const char*)in_item_ref, "Menu Item 4")) {
-		XPLMDebugString("XP-RP: ");
 		XPLMDebugString(getAircraftIcon());
 	}
 }
