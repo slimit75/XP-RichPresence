@@ -1,31 +1,32 @@
 // XP-RP by Speed_Limit75
 // This file is based off of multiple sample codes on the X-Plane Developer Website
+// This file was also made with 2 brain cells
 
 #include "XPLMDisplay.h"
 #include "XPLMGraphics.h"
 #include "XPLMMenus.h"
 #include <string.h>
 #if IBM
-#include <windows.h>
+	#include <windows.h>
 #endif
 #if LIN
-#include <GL/gl.h>
+	#include <GL/gl.h>
 #elif __GNUC__
-#include <OpenGL/gl.h>
+	#include <OpenGL/gl.h>
 #else
-#include <GL/gl.h>
+	#include <GL/gl.h>
 #endif
 
 #ifndef XPLM300
-#error This is made to be compiled against the XPLM300 SDK
+	#error This is made to be compiled against the XPLM300 SDK
 #endif
 
 static XPLMWindowID	g_window;
-void				draw_hello_world(XPLMWindowID in_window_id, void* in_refcon);
-int					dummy_mouse_handler(XPLMWindowID in_window_id, int x, int y, int is_down, void* in_refcon) { return 0; }
-XPLMCursorStatus	dummy_cursor_status_handler(XPLMWindowID in_window_id, int x, int y, void* in_refcon) { return xplm_CursorDefault; }
-int					dummy_wheel_handler(XPLMWindowID in_window_id, int x, int y, int wheel, int clicks, void* in_refcon) { return 0; }
-void				dummy_key_handler(XPLMWindowID in_window_id, char key, XPLMKeyFlags flags, char virtual_key, void* in_refcon, int losing_focus) { }
+void draw_hello_world(XPLMWindowID in_window_id, void* in_refcon);
+int dummy_mouse_handler(XPLMWindowID in_window_id, int x, int y, int is_down, void* in_refcon) { return 0; }
+XPLMCursorStatus dummy_cursor_status_handler(XPLMWindowID in_window_id, int x, int y, void* in_refcon) { return xplm_CursorDefault; }
+int dummy_wheel_handler(XPLMWindowID in_window_id, int x, int y, int wheel, int clicks, void* in_refcon) { return 0; }
+void dummy_key_handler(XPLMWindowID in_window_id, char key, XPLMKeyFlags flags, char virtual_key, void* in_refcon, int losing_focus) { }
 
 int g_menu_container_idx;
 XPLMMenuID g_menu_id;
@@ -90,16 +91,8 @@ PLUGIN_API void XPluginReceiveMessage(XPLMPluginID inFrom, int inMsg, void* inPa
 
 void	draw_hello_world(XPLMWindowID in_window_id, void* in_refcon)
 {
-	// Required: OpenGL State
-	XPLMSetGraphicsState(
-		0, // no fog
-		0, // 0 texture units
-		0, // no lighting
-		0, // no alpha testing
-		1, // do alpha blend
-		1, // do depth testing
-		0  //  no depth writing
-	);
+	// OpenGL State, kind of required
+	XPLMSetGraphicsState(0, /* no fog */ 0, /* 0 texture units */ 0, /* no lighting */ 0, /* no alpha testing */ 1, /* do alpha blend */ 1, /* do depth testing */ 0 /* no depth writing */);
 
 	int l, t, r, b;
 	XPLMGetWindowGeometry(in_window_id, &l, &t, &r, &b);
