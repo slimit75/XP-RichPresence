@@ -11,6 +11,7 @@
 #include "XPLMMenus.h"
 #include "XPLMPlanes.h"
 #include "XPLMDataAccess.h"
+#include "XPLMPlugin.h"
 #include <string.h>
 #include <string>
 
@@ -37,6 +38,7 @@ char* version = "v0.9 Developer Beta 1";
 // End Plugin-Specific Variables
 
 static XPLMWindowID	g_window;
+static XPLMWindowID t_window;
 void draw_main_window(XPLMWindowID in_window_id, void* in_refcon);
 int dummy_mouse_handler(XPLMWindowID in_window_id, int x, int y, int is_down, void* in_refcon) { return 0; }
 XPLMCursorStatus dummy_cursor_status_handler(XPLMWindowID in_window_id, int x, int y, void* in_refcon) { return xplm_CursorDefault; }
@@ -94,21 +96,31 @@ char* getAircraftIcon() {
 	}
 }
 
-PLUGIN_API int XPluginStart(char* outName, char* outSig, char* outDesc) {
-	strcpy(outName, "XP-RichPresence");
-	strcpy(outSig, "sl75.xp.richpresence");
-	strcpy(outDesc, "Discord Rich Presence for X-Plane 11.");
+void draw_main_window(XPLMWindowID in_window_id, void* in_refcon) {
+	// OpenGL State, kind of required
+	XPLMSetGraphicsState(0, /* no fog */ 0, /* 0 texture units */ 0, /* no lighting */ 0, /* no alpha testing */ 1, /* do alpha blend */ 1, /* do depth testing */ 0 /* no depth writing */);
 
-	// Menu
-	g_menu_container_idx = XPLMAppendMenuItem(XPLMFindPluginsMenu(), "XP-RichPresence", 0, 0);
-	g_menu_id = XPLMCreateMenu("XP-RichPresence", XPLMFindPluginsMenu(), g_menu_container_idx, menu_handler, NULL);
-	XPLMAppendMenuItem(g_menu_id, "Re-Configure Flight", (void*)"Menu Item 1", 1);
-	XPLMAppendMenuItem(g_menu_id, "Toggle Settings", (void*)"Menu Item 2", 1);
-	XPLMAppendMenuSeparator(g_menu_id);
-	XPLMAppendMenuItem(g_menu_id, "Reload Plugin", (void*)"Menu Item 3", 1);
-	XPLMAppendMenuItem(g_menu_id, "Test Aircraft Icon Logic (outputs to Log.txt)", (void*)"Menu Item 4", 1);
+	int l, t, r, b;
+	XPLMGetWindowGeometry(in_window_id, &l, &t, &r, &b);
+	float col_white[] = { 1.0, 1.0, 1.0 };
 
-	// Inital Window
+	XPLMDrawString(col_white, l + 10, t - 20, "This version of the plugin does nothing so far. You can close this window.", NULL, xplmFont_Proportional); // text warning of lack of functionality
+}
+
+void draw_settings(XPLMWindowID in_window_id, void* in_refcon) {
+	// OpenGL State, kind of required
+	XPLMSetGraphicsState(0, /* no fog */ 0, /* 0 texture units */ 0, /* no lighting */ 0, /* no alpha testing */ 1, /* do alpha blend */ 1, /* do depth testing */ 0 /* no depth writing */);
+
+	int l, t, r, b;
+	XPLMGetWindowGeometry(in_window_id, &l, &t, &r, &b);
+	float col_white[] = { 1.0, 1.0, 1.0 };
+
+	XPLMDrawString(col_white, l + 10, t - 20, "This is the future settings window.", NULL, xplmFont_Proportional); // text warning of lack of functionality
+	XPDrawElement(1, 1, 1, 1, xpElement_CheckBox, 0);
+
+}
+
+int startdraw_main_window() {
 	XPLMCreateWindow_t params;
 	params.structSize = sizeof(params);
 	params.visible = 1;
@@ -138,6 +150,54 @@ PLUGIN_API int XPluginStart(char* outName, char* outSig, char* outDesc) {
 	return g_window != NULL;
 }
 
+int startdraw_settings() {
+	XPLMCreateWindow_t params;
+	params.structSize = sizeof(params);
+	params.visible = 1;
+	params.drawWindowFunc = draw_settings;
+	params.handleMouseClickFunc = dummy_mouse_handler;
+	params.handleRightClickFunc = dummy_mouse_handler;
+	params.handleMouseWheelFunc = dummy_wheel_handler;
+	params.handleKeyFunc = dummy_key_handler;
+	params.handleCursorFunc = dummy_cursor_status_handler;
+	params.refcon = NULL;
+	params.layer = xplm_WindowLayerFloatingWindows;
+	params.decorateAsFloatingWindow = xplm_WindowDecorationRoundRectangle;
+	int left, bottom, right, top;
+	XPLMGetScreenBoundsGlobal(&left, &top, &right, &bottom);
+	params.left = left + 50;
+	params.bottom = bottom + 150;
+	params.right = params.left + 200;
+	params.top = params.bottom + 200;
+
+	t_window = XPLMCreateWindowEx(&params);
+
+	XPLMSetWindowPositioningMode(t_window, xplm_WindowPositionFree, -1);
+	// Min Width/Height Max Width/Height
+	XPLMSetWindowResizingLimits(t_window, 450, 75, 450, 75);
+	XPLMSetWindowTitle(t_window, "XP-RichPresence Settings");
+
+	return t_window != NULL;
+}
+
+PLUGIN_API int XPluginStart(char* outName, char* outSig, char* outDesc) {
+	strcpy(outName, "XP-RichPresence");
+	strcpy(outSig, "sl75.xp.richpresence");
+	strcpy(outDesc, "Discord Rich Presence for X-Plane 11.");
+
+	// Menu
+	g_menu_container_idx = XPLMAppendMenuItem(XPLMFindPluginsMenu(), "XP-RichPresence", 0, 0);
+	g_menu_id = XPLMCreateMenu("XP-RichPresence", XPLMFindPluginsMenu(), g_menu_container_idx, menu_handler, NULL);
+	XPLMAppendMenuItem(g_menu_id, "Re-Configure Flight", (void*)"Menu Item 1", 1);
+	XPLMAppendMenuItem(g_menu_id, "Toggle Settings", (void*)"Menu Item 2", 1);
+	XPLMAppendMenuSeparator(g_menu_id);
+	XPLMAppendMenuItem(g_menu_id, "Reload Plugins", (void*)"Menu Item 3", 1);
+	XPLMAppendMenuItem(g_menu_id, "Test Aircraft Icon Logic (outputs to Log.txt)", (void*)"Menu Item 4", 1);
+
+	// Inital Window
+	return startdraw_main_window();
+}
+
 PLUGIN_API void	XPluginStop(void) {
 	XPLMDestroyWindow(g_window); // Destroy Window
 	g_window = NULL;
@@ -148,37 +208,13 @@ PLUGIN_API void XPluginDisable(void) { }
 PLUGIN_API int  XPluginEnable(void) { return 1; }
 PLUGIN_API void XPluginReceiveMessage(XPLMPluginID inFrom, int inMsg, void* inParam) { }
 
-void draw_main_window(XPLMWindowID in_window_id, void* in_refcon) {
-	// OpenGL State, kind of required
-	XPLMSetGraphicsState(0, /* no fog */ 0, /* 0 texture units */ 0, /* no lighting */ 0, /* no alpha testing */ 1, /* do alpha blend */ 1, /* do depth testing */ 0 /* no depth writing */);
-
-	int l, t, r, b;
-	XPLMGetWindowGeometry(in_window_id, &l, &t, &r, &b);
-	float col_white[] = { 1.0, 1.0, 1.0 };
-
-	XPLMDrawString(col_white, l + 10, t - 20, "This version of the plugin does nothing so far. You can close this window.", NULL, xplmFont_Proportional); // text warning of lack of functionality
-}
-
-void draw_settings(XPLMWindowID in_window_id, void* in_refcon) {
-	// OpenGL State, kind of required
-	XPLMSetGraphicsState(0, /* no fog */ 0, /* 0 texture units */ 0, /* no lighting */ 0, /* no alpha testing */ 1, /* do alpha blend */ 1, /* do depth testing */ 0 /* no depth writing */);
-
-	int l, t, r, b;
-	XPLMGetWindowGeometry(in_window_id, &l, &t, &r, &b);
-	float col_white[] = { 1.0, 1.0, 1.0 };
-
-	XPLMDrawString(col_white, l + 10, t - 20, "This is the future settings window.", NULL, xplmFont_Proportional); // text warning of lack of functionality
-	XPDrawElement(1, 1, 1, 1, xpElement_CheckBox, 0);
-	
-}
-
 void menu_handler(void* in_menu_ref, void* in_item_ref) {
 	if (!strcmp((const char*)in_item_ref, "Menu Item 1")) {
-		//draw_main_window(XPLMWindowID in_window_id, void* in_refcon);
+		startdraw_main_window();
 	} else if (!strcmp((const char*)in_item_ref, "Menu Item 2")) {
-		//draw_settings(XPLMWindowID in_window_id, void* in_refcon);
+		startdraw_settings();
 	} else if (!strcmp((const char*)in_item_ref, "Menu Item 3")) {
-		//draw_settings(XPLMWindowID in_window_id, void* in_refcon);
+		XPLMReloadPlugins();
 	} else if (!strcmp((const char*)in_item_ref, "Menu Item 4")) {
 		XPLMDebugString(getAircraftIcon());
 	}
