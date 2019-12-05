@@ -1,5 +1,5 @@
 // XP-RP by Speed_Limit75
-// This document is based off of the "Hello World!" tutorial on the X-Plane Developer Website
+// This file is based off of multiple sample codes on the X-Plane Developer Website
 
 #include "XPLMDisplay.h"
 #include "XPLMGraphics.h"
