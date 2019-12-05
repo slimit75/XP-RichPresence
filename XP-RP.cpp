@@ -150,6 +150,18 @@ char* getAircraftIcon() {
 		return "dr40";
 	} else if (acfIcao == "C172") {
 		return "c172";
+	} else if ((acfIcao == "B733") && (acfIcao == "B734") && (acfIcao == "B735") && (acfIcao == "B736") && (acfIcao == "B737") && (acfIcao == "B738") && (acfIcao == "B739")) {
+		return "737ng";
+	} else if ((acfIcao == "B741") && (acfIcao == "B742") && (acfIcao == "B743") && (acfIcao == "B744") && (acfIcao == "B748")) {
+		return "747";
+	} else if ((acfIcao == "A318") && (acfIcao == "A319") && (acfIcao == "A320") && (acfIcao == "A321")) {
+		return "a320";
+	} else if ((acfIcao == "B752") && (acfIcao == "B753")) {
+		return "b757";
+	} else if ((acfIcao == "MD82") && (acfIcao == "MD88") && (acfIcao == "b712")) {
+		return "md88";
+	} else if ((acfIcao == "D328") && (acfIcao == "J328")) {
+		return "d328";
 	} else {
 		return "xp";
 	}
