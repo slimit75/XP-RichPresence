@@ -182,13 +182,13 @@ void draw_settings(XPLMWindowID in_window_id, void* in_refcon) {
 
 	XPLMDrawString(col_white, l + 10, t - 20, "Settings (non-functional right now)", NULL, xplmFont_Proportional); // text warning of lack of functionality
 	//XPDrawElement(1, 1, 1, 1, xpElement_CheckBox, 0);
-	XPCreateWidget(l + 30, l + 40, t - 40, t - 50, 1, "Display Speed Disagree", 1, 0, xpRadioButton);
+	//XPCreateWidget(l + 30, l + 40, t - 40, t - 50, 1, "Display Speed Disagree", 1, 0, xpRadioButton);
 	XPLMDrawString(col_white, l + 50, t - 45, "Display Speed Disagree", NULL, xplmFont_Proportional);
-	XPCreateWidget(l + 30, l + 40, t - 60, t - 70, 1, "Display Altitude Disagree", 1, 0, xpRadioButton);
+	//XPCreateWidget(l + 30, l + 40, t - 60, t - 70, 1, "Display Altitude Disagree", 1, 0, xpRadioButton);
 	XPLMDrawString(col_white, l + 50, t - 65, "Display Altitude Disagree", NULL, xplmFont_Proportional);
-	XPCreateWidget(l + 30, l + 40, t - 80, t - 90, 1, "Display Flight Number", 1, 0, xpRadioButton);
+	//XPCreateWidget(l + 30, l + 40, t - 80, t - 90, 1, "Display Flight Number", 1, 0, xpRadioButton);
 	XPLMDrawString(col_white, l + 50, t - 85, "Display Flight Number", NULL, xplmFont_Proportional);
-	XPCreateWidget(l + 30, l + 40, t - 100, t - 110, 1, "Open Window on Start", 1, 0, xpRadioButton);
+	//XPCreateWidget(l + 30, l + 40, t - 100, t - 110, 1, "Open Window on Start", 1, 0, xpRadioButton);
 	XPLMDrawString(col_white, l + 50, t - 105, "Open Window on Start", NULL, xplmFont_Proportional);
 }
 
@@ -248,7 +248,7 @@ int startdraw_settings() {
 
 	XPLMSetWindowPositioningMode(t_window, xplm_WindowPositionFree, -1);
 	// Min Width/Height Max Width/Height
-	XPLMSetWindowResizingLimits(t_window, 450, 75, 450, 75);
+	XPLMSetWindowResizingLimits(t_window, 225, 150, 225, 150);
 	XPLMSetWindowTitle(t_window, "XP-RichPresence Settings");
 
 	return t_window != NULL;
@@ -260,10 +260,10 @@ PLUGIN_API int XPluginStart(char* outName, char* outSig, char* outDesc) {
 	strcpy(outName, "XP-RichPresence");
 	strcpy(outSig, "sl75.xp.richpresence");
 	strcpy(outDesc, "Discord Rich Presence for X-Plane 11.");
-	XPLMDebugString("XP-RP: Loading..");
+	XPLMDebugString("XP-RP: Loading..\n");
 
 	// Menu
-	XPLMDebugString("      - Loading Menu.");
+	XPLMDebugString("      - Loading Menu.\n");
 	g_menu_container_idx = XPLMAppendMenuItem(XPLMFindPluginsMenu(), "XP-RichPresence", 0, 0);
 	g_menu_id = XPLMCreateMenu("XP-RichPresence", XPLMFindPluginsMenu(), g_menu_container_idx, menu_handler, NULL);
 	XPLMAppendMenuItem(g_menu_id, "Re-Configure Flight", (void*)"Menu Item 1", 1);
@@ -271,37 +271,37 @@ PLUGIN_API int XPluginStart(char* outName, char* outSig, char* outDesc) {
 	XPLMAppendMenuSeparator(g_menu_id);
 	XPLMAppendMenuItem(g_menu_id, "Reload Plugins", (void*)"Menu Item 3", 1);
 	XPLMAppendMenuItem(g_menu_id, "Test Aircraft Icon Logic (outputs to Log.txt)", (void*)"Menu Item 4", 1);
-	XPLMDebugString("      - Menu Loaded.");
+	XPLMDebugString("      - Menu Loaded.\n");
 
 	// Inital Window
 	return startdraw_main_window();
-	XPLMDebugString("XP-RP: Loaded");
+	XPLMDebugString("XP-RP: Loaded\n");
 }
 
 // Plugin Stop
 PLUGIN_API void	XPluginStop(void) {
-	XPLMDebugString("XP-RP: Stopping...");
+	XPLMDebugString("XP-RP: Stopping...\n");
 	XPLMDebugString("      - Destroying Windows");
 	XPLMDestroyWindow(g_window); // Destroy Window
 	g_window = NULL;
 	XPLMDestroyMenu(g_menu_id); // Destroy Menu
-	XPLMDebugString("XP-RP: Stopped.");
+	XPLMDebugString("XP-RP: Stopped.\n");
 }
 
 // Plugin Disable
 PLUGIN_API void XPluginDisable(void) {
-	XPLMDebugString("XP-RP: Plugin Disabled");
+	XPLMDebugString("XP-RP: Plugin Disabled\n");
 }
 
 // Plugin Enable
 PLUGIN_API int  XPluginEnable(void) { 
-	XPLMDebugString("XP-RP: Plugin Enabled");
+	XPLMDebugString("XP-RP: Plugin Enabled\n");
 	return 1; 
 }
 
 // Recieve Message
 PLUGIN_API void XPluginReceiveMessage(XPLMPluginID inFrom, int inMsg, void* inParam) { 
-	XPLMDebugString("XP-RP: Message Received: Not expecting any messages.");
+	XPLMDebugString("XP-RP: Message Received: Not expecting any messages.\n");
 }
 
 // Function for menu buttons to work
