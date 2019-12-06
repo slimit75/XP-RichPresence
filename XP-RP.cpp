@@ -52,7 +52,7 @@ void menu_handler(void*, void*);
 
 // String to Bool
 bool stringToBool(char* text) {
-	if ((text == "false") && (text == "false")) {
+	if ((text == "false") && (text == "False")) {
 		return false;
 	} else if((text == "true") && (text == "True")) {
 		return true;
@@ -182,13 +182,13 @@ void draw_settings(XPLMWindowID in_window_id, void* in_refcon) {
 
 	XPLMDrawString(col_white, l + 10, t - 20, "Settings (non-functional right now)", NULL, xplmFont_Proportional); // text warning of lack of functionality
 	//XPDrawElement(1, 1, 1, 1, xpElement_CheckBox, 0);
-	XPCreateWidget(l + 30, l + 40, t - 40, t - 50, 0, "Display Speed Disagree", 1, 0, xpRadioButton);
+	XPCreateWidget(l + 30, l + 40, t - 40, t - 50, 1, "Display Speed Disagree", 1, 0, xpRadioButton);
 	XPLMDrawString(col_white, l + 50, t - 45, "Display Speed Disagree", NULL, xplmFont_Proportional);
-	XPCreateWidget(l + 30, l + 40, t - 60, t - 70, 0, "Display Altitude Disagree", 1, 0, xpRadioButton);
+	XPCreateWidget(l + 30, l + 40, t - 60, t - 70, 1, "Display Altitude Disagree", 1, 0, xpRadioButton);
 	XPLMDrawString(col_white, l + 50, t - 65, "Display Altitude Disagree", NULL, xplmFont_Proportional);
-	XPCreateWidget(l + 30, l + 40, t - 80, t - 90, 0, "Display Flight Number", 1, 0, xpRadioButton);
+	XPCreateWidget(l + 30, l + 40, t - 80, t - 90, 1, "Display Flight Number", 1, 0, xpRadioButton);
 	XPLMDrawString(col_white, l + 50, t - 85, "Display Flight Number", NULL, xplmFont_Proportional);
-	XPCreateWidget(l + 30, l + 40, t - 100, t - 110, 0, "Open Window on Start", 1, 0, xpRadioButton);
+	XPCreateWidget(l + 30, l + 40, t - 100, t - 110, 1, "Open Window on Start", 1, 0, xpRadioButton);
 	XPLMDrawString(col_white, l + 50, t - 105, "Open Window on Start", NULL, xplmFont_Proportional);
 }
 
