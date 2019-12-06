@@ -1,7 +1,6 @@
 /*
 	XP-RP by Speed_Limit75
 	This file is based off of multiple sample codes on the X-Plane Developer Website
-	his file was also made with 2 brain cells
 */
 
 // Dependencies (almost all from X-Plane SDK)
@@ -49,16 +48,19 @@ int g_menu_container_idx;
 XPLMMenuID g_menu_id;
 void menu_handler(void*, void*);
 
+// System to return correct aircraft icon
 char* getAircraftIcon() {
+	// Get Aircraft ICAO
 	byte AircraftICAO[40];
 	static XPLMDataRef AircraftICAO_df = XPLMFindDataRef("sim/aircraft/view/acf_ICAO");
 	XPLMGetDatab(AircraftICAO_df, AircraftICAO, 0, 40);
 	char* acfIcao= (char*)AircraftICAO;
-
+	
+	// Debug: Output ICAO to Log.txt
 	XPLMDebugString("XP-RP: ");
 	XPLMDebugString(acfIcao);
 
-
+	// Aircraft Icon Logic
 	if ((acfIcao == "E170") && (acfIcao == "E175") && (acfIcao == "E190") && (acfIcao == "E195")) {
 		return "e-jets";
 	} else if (acfIcao == "DR40") {
@@ -96,6 +98,7 @@ char* getAircraftIcon() {
 	}
 }
 
+// Draw Main Window
 void draw_main_window(XPLMWindowID in_window_id, void* in_refcon) {
 	// OpenGL State, kind of required
 	XPLMSetGraphicsState(0, /* no fog */ 0, /* 0 texture units */ 0, /* no lighting */ 0, /* no alpha testing */ 1, /* do alpha blend */ 1, /* do depth testing */ 0 /* no depth writing */);
@@ -107,6 +110,7 @@ void draw_main_window(XPLMWindowID in_window_id, void* in_refcon) {
 	XPLMDrawString(col_white, l + 10, t - 20, "This version of the plugin does nothing so far. You can close this window.", NULL, xplmFont_Proportional); // text warning of lack of functionality
 }
 
+// Draw Settings Window
 void draw_settings(XPLMWindowID in_window_id, void* in_refcon) {
 	// OpenGL State, kind of required
 	XPLMSetGraphicsState(0, /* no fog */ 0, /* 0 texture units */ 0, /* no lighting */ 0, /* no alpha testing */ 1, /* do alpha blend */ 1, /* do depth testing */ 0 /* no depth writing */);
@@ -120,6 +124,7 @@ void draw_settings(XPLMWindowID in_window_id, void* in_refcon) {
 
 }
 
+// Creation of Main Wndow
 int startdraw_main_window() {
 	XPLMCreateWindow_t params;
 	params.structSize = sizeof(params);
@@ -150,6 +155,7 @@ int startdraw_main_window() {
 	return g_window != NULL;
 }
 
+// Creation of Settings Window
 int startdraw_settings() {
 	XPLMCreateWindow_t params;
 	params.structSize = sizeof(params);
@@ -180,7 +186,9 @@ int startdraw_settings() {
 	return t_window != NULL;
 }
 
+// Plugin Startup
 PLUGIN_API int XPluginStart(char* outName, char* outSig, char* outDesc) {
+	// Details
 	strcpy(outName, "XP-RichPresence");
 	strcpy(outSig, "sl75.xp.richpresence");
 	strcpy(outDesc, "Discord Rich Presence for X-Plane 11.");
@@ -198,16 +206,23 @@ PLUGIN_API int XPluginStart(char* outName, char* outSig, char* outDesc) {
 	return startdraw_main_window();
 }
 
+// Plugin Stop
 PLUGIN_API void	XPluginStop(void) {
 	XPLMDestroyWindow(g_window); // Destroy Window
 	g_window = NULL;
 	XPLMDestroyMenu(g_menu_id); // Destroy Menu
 }
 
+// Plugin Disable
 PLUGIN_API void XPluginDisable(void) { }
+
+// Plugin Enable
 PLUGIN_API int  XPluginEnable(void) { return 1; }
+
+// Recieve Message
 PLUGIN_API void XPluginReceiveMessage(XPLMPluginID inFrom, int inMsg, void* inParam) { }
 
+// Function for menu buttons to work
 void menu_handler(void* in_menu_ref, void* in_item_ref) {
 	if (!strcmp((const char*)in_item_ref, "Menu Item 1")) {
 		startdraw_main_window();
