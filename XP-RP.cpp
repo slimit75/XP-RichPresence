@@ -30,8 +30,8 @@
 #endif
 
 // Error incase wrong X-Plane SDK version is used
-#ifndef XPLM300
-	#error This is made to be compiled against the XPLM300 SDK
+#ifndef XPLM301
+	#error This is made to be compiled against the XPLM301 SDK
 #endif
 
 // Begin Plugin-Specific Variables
@@ -50,6 +50,7 @@ int g_menu_container_idx;
 XPLMMenuID g_menu_id;
 void menu_handler(void*, void*);
 
+
 // String to Bool
 bool stringToBool(char* text) {
 	if ((text == "false") && (text == "False")) {
@@ -61,7 +62,7 @@ bool stringToBool(char* text) {
 	}
 }
 
-// Manages Settings
+// Read Settings
 bool readSettings(char* filePath, char* wanted) {
 	// Future: Read Settings
 	char* text;
@@ -84,6 +85,7 @@ bool readSettings(char* filePath, char* wanted) {
 	}
 }
 
+// Write Settings
 void writeSettings(char* filePath, bool settings[4]) {
 	// Recieve input from function
 	bool displaySpeedDisagree = settings[0];
@@ -254,6 +256,22 @@ int startdraw_settings() {
 	return t_window != NULL;
 }
 
+// Function for menu buttons to work
+void menu_handler(void* in_menu_ref, void* in_item_ref) {
+	if (!strcmp((const char*)in_item_ref, "Menu Item 1")) {
+		startdraw_main_window();
+	}
+	else if (!strcmp((const char*)in_item_ref, "Menu Item 2")) {
+		startdraw_settings();
+	}
+	else if (!strcmp((const char*)in_item_ref, "Menu Item 3")) {
+		XPLMReloadPlugins();
+	}
+	else if (!strcmp((const char*)in_item_ref, "Menu Item 4")) {
+		XPLMDebugString(getAircraftIcon());
+	}
+}
+
 // Plugin Startup
 PLUGIN_API int XPluginStart(char* outName, char* outSig, char* outDesc) {
 	// Details
@@ -289,9 +307,7 @@ PLUGIN_API void	XPluginStop(void) {
 }
 
 // Plugin Disable
-PLUGIN_API void XPluginDisable(void) {
-	XPLMDebugString("XP-RP: Plugin Disabled\n");
-}
+PLUGIN_API void XPluginDisable(void) { XPLMDebugString("XP-RP: Plugin Disabled\n");  }
 
 // Plugin Enable
 PLUGIN_API int  XPluginEnable(void) { 
@@ -300,19 +316,4 @@ PLUGIN_API int  XPluginEnable(void) {
 }
 
 // Recieve Message
-PLUGIN_API void XPluginReceiveMessage(XPLMPluginID inFrom, int inMsg, void* inParam) { 
-	XPLMDebugString("XP-RP: Message Received: Not expecting any messages.\n");
-}
-
-// Function for menu buttons to work
-void menu_handler(void* in_menu_ref, void* in_item_ref) {
-	if (!strcmp((const char*)in_item_ref, "Menu Item 1")) {
-		startdraw_main_window();
-	} else if (!strcmp((const char*)in_item_ref, "Menu Item 2")) {
-		startdraw_settings();
-	} else if (!strcmp((const char*)in_item_ref, "Menu Item 3")) {
-		XPLMReloadPlugins();
-	} else if (!strcmp((const char*)in_item_ref, "Menu Item 4")) {
-		XPLMDebugString(getAircraftIcon());
-	}
-}
+PLUGIN_API void XPluginReceiveMessage(XPLMPluginID inFrom, int inMsg, void* inParam) { XPLMDebugString("XP-RP: Message Received: Not expecting any messages.\n");  }
