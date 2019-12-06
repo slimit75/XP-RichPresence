@@ -8,7 +8,6 @@
 #include "XPLMGraphics.h"
 #include "XPUIGraphics.h"
 #include "XPLMMenus.h"
-#include "XPLMPlanes.h"
 #include "XPLMDataAccess.h"
 #include "XPLMPlugin.h"
 #include <string.h>
@@ -121,7 +120,6 @@ void draw_settings(XPLMWindowID in_window_id, void* in_refcon) {
 
 	XPLMDrawString(col_white, l + 10, t - 20, "This is the future settings window.", NULL, xplmFont_Proportional); // text warning of lack of functionality
 	XPDrawElement(1, 1, 1, 1, xpElement_CheckBox, 0);
-
 }
 
 // Creation of Main Wndow
