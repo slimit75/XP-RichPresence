@@ -50,10 +50,38 @@ int g_menu_container_idx;
 XPLMMenuID g_menu_id;
 void menu_handler(void*, void*);
 
+// String to Bool
+bool stringToBool(char* text) {
+	if ((text == "false") && (text == "false")) {
+		return false;
+	} else if((text == "true") && (text == "True")) {
+		return true;
+	} else {
+		return ERROR;
+	}
+}
+
 // Manages Settings
-bool readSettings(char* filePath) {
+bool readSettings(char* filePath, char* wanted) {
 	// Future: Read Settings
-	return 0;
+	char* text;
+
+	// String to Bool
+	bool displaySpeedDisagree = stringToBool("true");
+	bool displayAltDisagree = stringToBool("true");
+	bool displayFlightNumber = stringToBool("true");
+	bool openOnStart = stringToBool("true");
+
+	// Return
+	if (wanted == "displaySpeedDisagree") {
+		return displaySpeedDisagree;
+	} else if (wanted == "displayAltDisagree") {
+		return displayAltDisagree;
+	} else if (wanted == "displayFlightNumber") {
+		return displayFlightNumber;
+	} else if (wanted == "openOnStart") {
+		return openOnStart;
+	}
 }
 
 void writeSettings(char* filePath, bool settings[4]) {
