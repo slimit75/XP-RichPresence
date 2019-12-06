@@ -12,6 +12,7 @@
 #include "XPLMPlugin.h"
 #include "XPWidgets.h"
 #include "XPStandardWidgets.h"
+#include <fstream>
 #include <string.h>
 #include <string>
 
@@ -48,6 +49,37 @@ void dummy_key_handler(XPLMWindowID in_window_id, char key, XPLMKeyFlags flags, 
 int g_menu_container_idx;
 XPLMMenuID g_menu_id;
 void menu_handler(void*, void*);
+
+// Manages Settings
+bool readSettings(char* filePath) {
+	// Future: Read Settings
+	return 0;
+}
+
+void writeSettings(char* filePath, bool settings[4]) {
+	// Recieve input from function
+	bool displaySpeedDisagree = settings[0];
+	bool displayAltDisagree = settings[1];
+	bool displayFlightNumber = settings[2];
+	bool openOnStart = settings[3];
+
+	// Future: Write settings
+	std::fstream settingsFile;
+	settingsFile.open("test.txt");
+	settingsFile << "test";
+	settingsFile.close();
+}
+
+// Gets Data
+char* getData(char* type) {
+	if (type == "Airspeed") {
+		return "Program Me kts"; // Placeholder to remind me to make work during testing
+	} else if (type == "Altitude") {
+		return "Program Me ft"; // Placeholder to remind me to make work during testing
+	} else {
+		return "Invalid Type";
+	}
+}
 
 // System to return correct aircraft icon
 char* getAircraftIcon() {
