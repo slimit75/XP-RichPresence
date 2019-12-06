@@ -192,8 +192,10 @@ PLUGIN_API int XPluginStart(char* outName, char* outSig, char* outDesc) {
 	strcpy(outName, "XP-RichPresence");
 	strcpy(outSig, "sl75.xp.richpresence");
 	strcpy(outDesc, "Discord Rich Presence for X-Plane 11.");
+	XPLMDebugString("XP-RP: Loading..");
 
 	// Menu
+	XPLMDebugString("      - Loading Menu.");
 	g_menu_container_idx = XPLMAppendMenuItem(XPLMFindPluginsMenu(), "XP-RichPresence", 0, 0);
 	g_menu_id = XPLMCreateMenu("XP-RichPresence", XPLMFindPluginsMenu(), g_menu_container_idx, menu_handler, NULL);
 	XPLMAppendMenuItem(g_menu_id, "Re-Configure Flight", (void*)"Menu Item 1", 1);
@@ -201,26 +203,38 @@ PLUGIN_API int XPluginStart(char* outName, char* outSig, char* outDesc) {
 	XPLMAppendMenuSeparator(g_menu_id);
 	XPLMAppendMenuItem(g_menu_id, "Reload Plugins", (void*)"Menu Item 3", 1);
 	XPLMAppendMenuItem(g_menu_id, "Test Aircraft Icon Logic (outputs to Log.txt)", (void*)"Menu Item 4", 1);
+	XPLMDebugString("      - Menu Loaded.");
 
 	// Inital Window
 	return startdraw_main_window();
+	XPLMDebugString("XP-RP: Loaded");
 }
 
 // Plugin Stop
 PLUGIN_API void	XPluginStop(void) {
+	XPLMDebugString("XP-RP: Stopping...");
+	XPLMDebugString("      - Destroying Windows");
 	XPLMDestroyWindow(g_window); // Destroy Window
 	g_window = NULL;
 	XPLMDestroyMenu(g_menu_id); // Destroy Menu
+	XPLMDebugString("XP-RP: Stopped.");
 }
 
 // Plugin Disable
-PLUGIN_API void XPluginDisable(void) { }
+PLUGIN_API void XPluginDisable(void) {
+	XPLMDebugString("XP-RP: Plugin Disabled");
+}
 
 // Plugin Enable
-PLUGIN_API int  XPluginEnable(void) { return 1; }
+PLUGIN_API int  XPluginEnable(void) { 
+	XPLMDebugString("XP-RP: Plugin Enabled");
+	return 1; 
+}
 
 // Recieve Message
-PLUGIN_API void XPluginReceiveMessage(XPLMPluginID inFrom, int inMsg, void* inParam) { }
+PLUGIN_API void XPluginReceiveMessage(XPLMPluginID inFrom, int inMsg, void* inParam) { 
+	XPLMDebugString("XP-RP: Message Received: Not expecting any messages.");
+}
 
 // Function for menu buttons to work
 void menu_handler(void* in_menu_ref, void* in_item_ref) {
