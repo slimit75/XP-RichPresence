@@ -10,6 +10,8 @@
 #include "XPLMMenus.h"
 #include "XPLMDataAccess.h"
 #include "XPLMPlugin.h"
+#include "XPWidgets.h"
+#include "XPStandardWidgets.h"
 #include <string.h>
 #include <string>
 
@@ -119,7 +121,11 @@ void draw_settings(XPLMWindowID in_window_id, void* in_refcon) {
 	float col_white[] = { 1.0, 1.0, 1.0 };
 
 	XPLMDrawString(col_white, l + 10, t - 20, "This is the future settings window.", NULL, xplmFont_Proportional); // text warning of lack of functionality
-	XPDrawElement(1, 1, 1, 1, xpElement_CheckBox, 0);
+	//XPDrawElement(1, 1, 1, 1, xpElement_CheckBox, 0);
+	XPCreateWidget(l + 30, l + 40, t - 40, t - 50, 0, "Display Speed Disagree", 1, 0, xpRadioButton);
+	XPCreateWidget(l + 50, l + 60, t - 60, t - 70, 0, "Display Altitude Disagree", 1, 0, xpRadioButton);
+	XPCreateWidget(l + 70, l + 80, t - 80, t - 90, 0, "Display Flight Number", 1, 0, xpRadioButton);
+	XPCreateWidget(l + 90, l + 100, t - 100, t - 110, 0, "Open Window on Start", 1, 0, xpRadioButton);
 }
 
 // Creation of Main Wndow
