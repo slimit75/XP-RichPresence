@@ -15,8 +15,6 @@
 #include "XPLMMenus.h" // XP SDK: Menu Functionality
 #include "XPLMDataAccess.h" // XP SDK: Datarefs
 #include "XPLMPlugin.h" // XP SDK: Reload All Plugins
-//#include "XPWidgets.h" // XP SDK: Probably not needed
-//#include "XPStandardWidgets.h" // XP SDK: Probably not needed
 #include "settingsMan.h" // XP-RP: Read/Write Settings File
 #include <fstream>
 #include <string.h>
@@ -138,16 +136,22 @@ void draw_settings(XPLMWindowID in_window_id, void* in_refcon) {
 	XPLMGetWindowGeometry(in_window_id, &l, &t, &r, &b);
 	float col_white[] = { 1.0, 1.0, 1.0 };
 
-	XPLMDrawString(col_white, l + 10, t - 20, "Settings (non-functional right now)", NULL, xplmFont_Proportional); // text warning of lack of functionality
-	//XPDrawElement(1, 1, 1, 1, xpElement_CheckBox, 0);
-	//XPCreateWidget(l + 30, l + 40, t - 40, t - 50, 1, "Display Speed Disagree", 1, 0, xpRadioButton);
-	XPLMDrawString(col_white, l + 50, t - 45, "Display Speed Disagree", NULL, xplmFont_Proportional);
-	//XPCreateWidget(l + 30, l + 40, t - 60, t - 70, 1, "Display Altitude Disagree", 1, 0, xpRadioButton);
-	XPLMDrawString(col_white, l + 50, t - 65, "Display Altitude Disagree", NULL, xplmFont_Proportional);
-	//XPCreateWidget(l + 30, l + 40, t - 80, t - 90, 1, "Display Flight Number", 1, 0, xpRadioButton);
-	XPLMDrawString(col_white, l + 50, t - 85, "Display Flight Number", NULL, xplmFont_Proportional);
-	//XPCreateWidget(l + 30, l + 40, t - 100, t - 110, 1, "Open Window on Start", 1, 0, xpRadioButton);
-	XPLMDrawString(col_white, l + 50, t - 105, "Open Window on Start", NULL, xplmFont_Proportional);
+	XPLMDrawString(col_white, l + 10, t - 20, "Settings (non-functional right now):", NULL, xplmFont_Proportional); // text warning of lack of functionality
+	
+	XPLMDrawString(col_white, l + 30, t - 45, "Display Speed Disagree", NULL, xplmFont_Proportional);
+	XPDrawElement(l + 10, t - 47, l + 20, t - 37, xpElement_CheckBox, 0);
+	
+	XPLMDrawString(col_white, l + 30, t - 65, "Display Altitude Disagree", NULL, xplmFont_Proportional);
+	XPDrawElement(l + 10, t - 67, l + 20, t - 57, xpElement_CheckBox, 0);
+	
+	XPLMDrawString(col_white, l + 30, t - 85, "Display Flight Number", NULL, xplmFont_Proportional);
+	XPDrawElement(l + 10, t - 87, l + 20, t - 77, xpElement_CheckBox, 0);
+	
+	XPLMDrawString(col_white, l + 30, t - 105, "Open Window on Start", NULL, xplmFont_Proportional);
+	XPDrawElement(l + 10, t - 107, l + 20, t - 97, xpElement_CheckBox, 0);
+
+	XPLMDrawString(col_white, l + 20, b + 20, "Save & Exit", NULL, xplmFont_Proportional);
+	XPDrawElement(l + 10, b + 10, r - 10, b + 30, xpElement_PushButton, 0);
 }
 
 // Creation of Main Wndow
