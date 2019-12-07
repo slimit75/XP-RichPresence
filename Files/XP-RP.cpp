@@ -8,16 +8,16 @@
 	NOTE: Some parts of this file are based off of multiple sample codes on the X-Plane Developer Website
 */
 
-// Dependencies (almost all from X-Plane SDK)
-#include "XPLMDisplay.h"
-#include "XPLMGraphics.h"
-#include "XPUIGraphics.h"
-#include "XPLMMenus.h"
-#include "XPLMDataAccess.h"
-#include "XPLMPlugin.h"
-#include "XPWidgets.h"
-#include "XPStandardWidgets.h"
-#include "settingsMan.h"
+// Headers
+#include "XPLMDisplay.h" // XP SDK: Basic UI (modern window)
+#include "XPLMGraphics.h" // XP SDK: More UI
+#include "XPUIGraphics.h" // XP SDK: Even More UI
+#include "XPLMMenus.h" // XP SDK: Menu Functionality
+#include "XPLMDataAccess.h" // XP SDK: Datarefs
+#include "XPLMPlugin.h" // XP SDK: Reload All Plugins
+//#include "XPWidgets.h" // XP SDK: Probably not needed
+//#include "XPStandardWidgets.h" // XP SDK: Probably not needed
+#include "settingsMan.h" // XP-RP: Read/Write Settings File
 #include <fstream>
 #include <string.h>
 #include <string>
