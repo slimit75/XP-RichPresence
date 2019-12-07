@@ -1,6 +1,11 @@
 /*
-	XP-RP by Speed_Limit75
-	This file is based off of multiple sample codes on the X-Plane Developer Website
+	##########################
+	# XP-RP by Speed_Limit75 #
+	# XP-RP.cpp              #
+	##########################
+
+	This is the main file for the XP-RP Plugin
+	NOTE: Some parts of this file are based off of multiple sample codes on the X-Plane Developer Website
 */
 
 // Dependencies (almost all from X-Plane SDK)

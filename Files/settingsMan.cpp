@@ -1,3 +1,12 @@
+/*
+	##########################
+	# XP-RP by Speed_Limit75 #
+	# settingsMan.cpp/.h     #
+	##########################
+
+	This file manages reading and writing the settings.
+*/
+
 #include "settingsMan.h"
 #include <fstream>
 #include <iostream>

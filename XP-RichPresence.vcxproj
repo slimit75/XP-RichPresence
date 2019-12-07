@@ -107,9 +107,11 @@
   <ItemGroup>
     <ClCompile Include="Files/XP-RP.cpp" />
     <ClCompile Include="Files/settingsMan.cpp" />
+    <ClCompile Include="Files\customWidget.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Files/settingsMan.h" />
+    <ClInclude Include="Files\customWidget.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

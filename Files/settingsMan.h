@@ -1,6 +1,6 @@
-#pragma once
+// Header: See settingsMan.cpp
 
-#include <iostream>
+#pragma once
 
 bool stringToBool(char* text);
 bool readSettings(char* filePath, char* wanted);
