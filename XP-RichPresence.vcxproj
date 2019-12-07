@@ -108,6 +108,9 @@
     <ClCompile Include="Files/XP-RP.cpp" />
     <ClCompile Include="Files/settingsMan.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Files/settingsMan.h" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
