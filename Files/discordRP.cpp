@@ -9,7 +9,7 @@
 
 #include "discordRP.h"
 #include "discord.h"
-#include "XPLMUtilities.h"
+//#include "XPLMUtilities.h"
 
 discord::Core* core{};
 
@@ -18,6 +18,8 @@ void initRP() {
 	discord::Activity activity{};
 	activity.SetState("Testing");
 	activity.SetDetails("Testing, but another line");
+	activity.GetAssets().SetLargeImage("xp");
+	activity.SetType(discord::ActivityType::Playing);
 	core->ActivityManager().UpdateActivity(activity, [](discord::Result result) {});
 	core->ActivityManager().RegisterSteam(1938123);
 }
