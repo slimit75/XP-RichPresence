@@ -3,8 +3,7 @@ pch.*
 framework.h
 .vs/*
 *-SDK/*
-*-RPC/*
+*-LIB/*
 x64/*
 !XP-RichPresence.xpl
 !XP-RichPresence.vcxproj
-*.zip
