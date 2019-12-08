@@ -14,7 +14,7 @@
 discord::Core* core{};
 
 void initRP() {
-	auto result = discord::Core::Create(579668847846752266, DiscordCreateFlags_Default, &core);
+	auto result = discord::Core::Create(579668847846752266, DiscordCreateFlags_NoRequireDiscord, &core);
 	discord::Activity activity{};
 	activity.SetState("Testing");
 	activity.SetDetails("Testing, but another line");
