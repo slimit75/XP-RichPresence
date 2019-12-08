@@ -1,10 +1,16 @@
-XP-RichPresence.*
-pch.*
-framework.h
+# Hide junk from Visual Studio/Visual Studio Code
 .vs/*
+x64/*
+.vscode/*
+XP-RichPresence.*
+
+# hide SDKs/Libarys
 *-SDK/*
 *-LIB/*
-x64/*
+
+# Exceptions to rules
 !XP-RichPresence.xpl
 !XP-RichPresence.vcxproj
+
+# Other
 *.zip
