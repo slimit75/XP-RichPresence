@@ -30,7 +30,7 @@
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>false</WholeProgramOptimization>
-    <CharacterSet>Unicode</CharacterSet>
+    <CharacterSet>MultiByte</CharacterSet>
     <CLRSupport>false</CLRSupport>
     <PreferredToolArchitecture>x64</PreferredToolArchitecture>
     <SpectreMitigation>Spectre</SpectreMitigation>
@@ -97,6 +97,9 @@
       <LanguageStandard>stdcpp17</LanguageStandard>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DiagnosticsFormat>Caret</DiagnosticsFormat>
+      <CompileAsManaged>false</CompileAsManaged>
+      <ExceptionHandling>false</ExceptionHandling>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -108,6 +111,11 @@
       <EnableUAC>true</EnableUAC>
       <AdditionalLibraryDirectories>Discord-LIB;XP-SDK\Libraries\Win;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>Opengl32.lib;odbc32.lib;odbccp32.lib;XPLM_64.lib;XPWidgets_64.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <TreatLinkerWarningAsErrors>false</TreatLinkerWarningAsErrors>
+      <AdditionalOptions>
+      </AdditionalOptions>
+      <ForceFileOutput>
+      </ForceFileOutput>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -115,11 +123,14 @@
     <ClCompile Include="Files\XP-RP.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Files\discordRP.cpp" />
-    <None Include="Files\discordRP.h" />
+    <ClCompile Include="Files\discordRP.cpp" />
+    <ClInclude Include="Files\discordRP.h" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Files\settingsMan.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

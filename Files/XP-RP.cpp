@@ -126,6 +126,7 @@ void draw_main_window(XPLMWindowID in_window_id, void* in_refcon) {
 	float col_white[] = { 1.0, 1.0, 1.0 };
 
 	XPLMDrawString(col_white, l + 10, t - 20, "This version of the plugin does nothing so far. You can close this window.", NULL, xplmFont_Proportional); // text warning of lack of functionality
+	runCallback();
 }
 
 // Draw Settings Window
@@ -153,8 +154,6 @@ void draw_settings(XPLMWindowID in_window_id, void* in_refcon) {
 
 	XPLMDrawString(col_white, l + 20, b + 20, "Save & Exit", NULL, xplmFont_Proportional);
 	XPDrawElement(l + 10, b + 10, r - 10, b + 30, xpElement_PushButton, 0);
-
-	runCallback();
 }
 
 // Creation of Main Wndow
