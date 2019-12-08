@@ -2,7 +2,8 @@ XP-RichPresence.*
 pch.*
 framework.h
 .vs/*
-SDK/*
+*-SDK/*
+*-LIB/*
 x64/*
 !XP-RichPresence.xpl
 !XP-RichPresence.vcxproj
