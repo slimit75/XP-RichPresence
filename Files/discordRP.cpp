@@ -6,3 +6,7 @@
 
 	This file manages the Discord Rich Presence.
 */
+
+void menuRP() {}
+void updateRP() {}
+void stopRP() {}
