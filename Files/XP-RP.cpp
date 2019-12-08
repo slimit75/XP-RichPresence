@@ -16,6 +16,7 @@
 #include "XPLMDataAccess.h" // XP SDK: Datarefs
 #include "XPLMPlugin.h" // XP SDK: Reload All Plugins
 #include "settingsMan.h" // XP-RP: Read/Write Settings File
+#include "discordRP.h" // XP-RP: Discord Management
 #include <fstream>
 #include <string.h>
 #include <string>
@@ -152,6 +153,8 @@ void draw_settings(XPLMWindowID in_window_id, void* in_refcon) {
 
 	XPLMDrawString(col_white, l + 20, b + 20, "Save & Exit", NULL, xplmFont_Proportional);
 	XPDrawElement(l + 10, b + 10, r - 10, b + 30, xpElement_PushButton, 0);
+
+	runCallback();
 }
 
 // Creation of Main Wndow
@@ -253,6 +256,9 @@ PLUGIN_API int XPluginStart(char* outName, char* outSig, char* outDesc) {
 
 	// Inital Window
 	return startdraw_main_window();
+
+	// Discord RP
+	initRP();
 	XPLMDebugString("XP-RP: Loaded\n");
 }
 
