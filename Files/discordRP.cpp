@@ -22,27 +22,31 @@ namespace {
 }
 
 DiscordState state{};
-discord::Core* core{};
+discord::Core* core{}; // LNK2001/2019?
+char* str;
 
 void initRP() {
-	auto result = discord::Core::Create(579668847846752266, DiscordCreateFlags_NoRequireDiscord, &core);
+	auto result = discord::Core::Create(579668847846752266, DiscordCreateFlags_NoRequireDiscord, &core); // LNK 2001/2019
 	state.core.reset(core);
 	if (!state.core) {
 		XPLMDebugString("Failed to instantiate discord core! (err");
-		XPLMDebugString(static_cast<int>(result));
+
+		sprintf(str, "%d", static_cast<int>(result));
+		XPLMDebugString(str);
+		
 		XPLMDebugString(")\n");
 		std::exit(-1);
 	}
 
 	discord::Activity activity{};
-	activity.SetState("Testing");
-	activity.SetDetails("Testing, but another line");
-	activity.GetAssets().SetLargeImage("xp");
-	activity.SetType(discord::ActivityType::Playing);
-	state.core->ActivityManager().UpdateActivity(activity, [](discord::Result result) {});
-	state.core->ActivityManager().RegisterSteam(1938123);
+	activity.SetState("Testing"); // LNK2001/2019
+	activity.SetDetails("Testing, but another line");  // LNK2001/2019
+	activity.GetAssets().SetLargeImage("xp"); // LNK2001/2019
+	activity.SetType(discord::ActivityType::Playing); // LNK2001/2019
+	state.core->ActivityManager().UpdateActivity(activity, [](discord::Result result) {}); // LNK2001/2019
+	state.core->ActivityManager().RegisterSteam(1938123); // LNK2001/2019
 }
 
 void runCallback() {
-	::core->RunCallbacks();
+	::core->RunCallbacks(); // LNK2001/2019
 }
