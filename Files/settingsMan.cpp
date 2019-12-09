@@ -60,7 +60,14 @@ void writeSettings(char* filePath, bool settings[4]) {
 
 	// Future: Write settings
 	fstream settingsFile;
-	settingsFile.open("test.txt");
-	settingsFile << "test";
+	settingsFile.open("test.txt"); // to be changed to path of settings file
+	settingsFile << "displaySpeedDisagree=";
+	settingsFile << displaySpeedDisagree;
+	settingsFile << "\ndisplayAltDisagree=";
+	settingsFile << displayAltDisagree;
+	settingsFile << "\ndisplayFlightNumber=";
+	settingsFile << displayFlightNumber;
+	settingsFile << "\nopenOnStart=";
+	settingsFile << openOnStart;
 	settingsFile.close();
 }
