@@ -13,11 +13,11 @@
 using namespace std;
 
 // String to Bool
-bool stringToBool(char* text) {
-	if ((text == "false") && (text == "False")) {
+bool stringToBool(const char* text) {
+	if ((strcmp(text, "false") == 0) && (strcmp(text, "False") == 0)) {
 		return false;
 	}
-	else if ((text == "true") && (text == "True")) {
+	else if ((strcmp(text, "true") == 0) && (strcmp(text, "True") == 0)) {
 		return true;
 	}
 	else {
@@ -26,15 +26,15 @@ bool stringToBool(char* text) {
 }
 
 // Read Settings
-bool readSettings(char* filePath, char* wanted) {
+bool readSettings(const char* filePath, const char* wanted) {
 	// Future: Read Settings
-	char* text;
+	char* text{};
 
 	// String to Bool
-	bool displaySpeedDisagree = stringToBool("true");
-	bool displayAltDisagree = stringToBool("true");
-	bool displayFlightNumber = stringToBool("true");
-	bool openOnStart = stringToBool("true");
+	const bool displaySpeedDisagree = stringToBool("true");
+	const bool displayAltDisagree = stringToBool("true");
+	const bool displayFlightNumber = stringToBool("true");
+	const bool openOnStart = stringToBool("true");
 
 	// Return
 	if (wanted == "displaySpeedDisagree") {
@@ -51,12 +51,12 @@ bool readSettings(char* filePath, char* wanted) {
 }
 
 // Write Settings
-void writeSettings(char* filePath, bool settings[4]) {
+void writeSettings(char* filePath, const bool settings[4]) {
 	// Recieve input from function
-	bool displaySpeedDisagree = settings[0];
-	bool displayAltDisagree = settings[1];
-	bool displayFlightNumber = settings[2];
-	bool openOnStart = settings[3];
+	const bool displaySpeedDisagree = settings[0];
+	const bool displayAltDisagree = settings[1];
+	const bool displayFlightNumber = settings[2];
+	const bool openOnStart = settings[3];
 
 	// Future: Write settings
 	fstream settingsFile;
