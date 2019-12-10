@@ -48,6 +48,8 @@
     <LinkIncremental>false</LinkIncremental>
     <TargetExt>.xpl</TargetExt>
     <GenerateManifest>false</GenerateManifest>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <TargetExt>.xpl</TargetExt>
@@ -60,7 +62,6 @@
     <ClCompile>
       <PrecompiledHeader>
       </PrecompiledHeader>
-      <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>false</SDLCheck>
       <PreprocessorDefinitions>WINVER=0x0601;_WIN32_WINNT=0x0601;_WIN32_WINDOWS=0x0601;WIN32;_DEBUG;XPRICHPRESENCE_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
