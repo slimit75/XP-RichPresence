@@ -30,12 +30,12 @@ bool stringToBool(string stext) {
 
 // Read Settings
 bool readSettings() {
-	// Future: Read Settings
+	// Read Settings
 	string line;
 	string output[4];
 	ifstream settingsFile;
 	int x = 0;
-	settingsFile.open("test.txt"); // to be changed to path of settings file
+	settingsFile.open("test.txt"); // TODO: Change to path of settings file
 	if (settingsFile.is_open()) {
 		while (getline(settingsFile, line)) {
 			output[x] = line;
@@ -72,7 +72,7 @@ void writeSettings(bool settings[4]) {
 
 	// Future: Write settings
 	fstream settingsFile;
-	settingsFile.open("test.txt"); // to be changed to path of settings file
+	settingsFile.open("test.txt"); // TODO: Change to path of settings file
 	settingsFile << "displaySpeedDisagree=";
 	settingsFile << displaySpeedDisagree;
 	settingsFile << "\ndisplayAltDisagree=";

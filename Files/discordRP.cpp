@@ -5,6 +5,8 @@
 	##########################
 
 	This file manages the Discord Rich Presence.
+
+	TODO: Fix entire file
 */
 
 #include "discordRP.h"

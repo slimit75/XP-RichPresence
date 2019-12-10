@@ -1,4 +1,5 @@
 # XP-RichPresence
+**WARNING: The latest commits under the development of v0.9 render the plugin broken, use the releases tab to at least get into X-Plane.**
 Discord Rich Presence for X-Plane 11.
 Based on https://github.com/leonardus/XP-RPC
 
