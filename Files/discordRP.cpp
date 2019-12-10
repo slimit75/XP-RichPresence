@@ -26,7 +26,7 @@ discord::Core* core{}; // LNK2001/2019?
 char* str;
 
 void initRP() {
-	auto result = discord::Core::Create(579668847846752266, DiscordCreateFlags_NoRequireDiscord, &core); // LNK 2001/2019
+	const auto result = discord::Core::Create(579668847846752266, DiscordCreateFlags_NoRequireDiscord, &core); // LNK 2001/2019
 	state.core.reset(core);
 	if (!state.core) {
 		XPLMDebugString("Failed to instantiate discord core! (err");

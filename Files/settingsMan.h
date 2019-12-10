@@ -1,7 +1,8 @@
 // Header: See settingsMan.cpp
 
 #pragma once
+#include <string>
+using namespace std;
 
-bool stringToBool(char* text);
-bool readSettings(char* filePath, char* wanted);
-void writeSettings(char* filePath, bool settings[4]);
+bool readSettings();
+void writeSettings(bool settings[4]);

@@ -10,10 +10,13 @@
 #include "settingsMan.h"
 #include <fstream>
 #include <iostream>
+#include <string>
 using namespace std;
 
 // String to Bool
-bool stringToBool(const char* text) {
+bool stringToBool(string stext) {
+	const char* text = stext.c_str();
+
 	if ((strcmp(text, "false") == 0) && (strcmp(text, "False") == 0)) {
 		return false;
 	}
@@ -26,32 +29,41 @@ bool stringToBool(const char* text) {
 }
 
 // Read Settings
-bool readSettings(const char* filePath, const char* wanted) {
+bool readSettings() {
 	// Future: Read Settings
-	char* text{};
+	string line;
+	string output[4];
+	ifstream settingsFile;
+	int x = 0;
+	settingsFile.open("test.txt"); // to be changed to path of settings file
+	if (settingsFile.is_open()) {
+		while (getline(settingsFile, line)) {
+			output[x] = line;
+			x = x + 1;
+		}
+		settingsFile.close();
+	}
+	settingsFile.close();
+
+	// Split data from string
+	output[0] = output[0].substr(output[0].find("="));
+	output[1] = output[1].substr(output[1].find("="));
+	output[2] = output[2].substr(output[2].find("="));
+	output[3] = output[3].substr(output[3].find("="));
 
 	// String to Bool
-	const bool displaySpeedDisagree = stringToBool("true");
-	const bool displayAltDisagree = stringToBool("true");
-	const bool displayFlightNumber = stringToBool("true");
-	const bool openOnStart = stringToBool("true");
-
+	const bool displaySpeedDisagree = stringToBool(output[0]);
+	const bool displayAltDisagree = stringToBool(output[1]);
+	const bool displayFlightNumber = stringToBool(output[2]);
+	const bool openOnStart = stringToBool(output[3]);
+	
 	// Return
-	if (wanted == "displaySpeedDisagree") {
-		return displaySpeedDisagree;
-	} else if (wanted == "displayAltDisagree") {
-		return displayAltDisagree;
-	} else if (wanted == "displayFlightNumber") {
-		return displayFlightNumber;
-	} else if (wanted == "openOnStart") {
-		return openOnStart;
-	} else {
-		return 0;
-	}
+	const bool toReturn[4] = {displaySpeedDisagree, displayAltDisagree, displayFlightNumber, openOnStart};
+	return toReturn;
 }
 
 // Write Settings
-void writeSettings(char* filePath, const bool settings[4]) {
+void writeSettings(bool settings[4]) {
 	// Recieve input from function
 	const bool displaySpeedDisagree = settings[0];
 	const bool displayAltDisagree = settings[1];
