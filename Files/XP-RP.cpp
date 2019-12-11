@@ -67,7 +67,8 @@ char* getData(char* type) {
 // System to return correct aircraft icon
 char* getAircraftIcon() {
 	// Get Aircraft ICAO
-	byte AircraftICAO[40];
+	std::byte AircraftICAO[40];
+
 	static XPLMDataRef AircraftICAO_df = XPLMFindDataRef("sim/aircraft/view/acf_ICAO");
 	XPLMGetDatab(AircraftICAO_df, AircraftICAO, 0, 40);
 	char* acfIcao= (char*)AircraftICAO;
@@ -78,37 +79,39 @@ char* getAircraftIcon() {
 
 	// Aircraft Icon Logic
 	// TODO: Change logic to actually work
-	if ((acfIcao == "E170") && (acfIcao == "E175") && (acfIcao == "E190") && (acfIcao == "E195")) {
+
+	//((strcmp(text, "false") == 0)
+	if ((strcmp(acfIcao, "E170") == 0) && (strcmp(acfIcao, "E175") == 0) && (strcmp(acfIcao, "E190") == 0) && (strcmp(acfIcao, "E195") == 0)) {
 		return "e-jets";
-	} else if (acfIcao == "DR40") {
+	} else if (strcmp(acfIcao, "DR40") == 0) {
 		return "dr40";
-	} else if (acfIcao == "C172") {
+	} else if (strcmp(acfIcao, "C172") == 0) {
 		return "c172";
-	} else if ((acfIcao == "B733") && (acfIcao == "B734") && (acfIcao == "B735") && (acfIcao == "B736") && (acfIcao == "B737") && (acfIcao == "B738") && (acfIcao == "B739")) {
+	} else if ((strcmp(acfIcao, "B733") == 0) && (strcmp(acfIcao, "B734") == 0) && (strcmp(acfIcao, "B735") == 0) && (strcmp(acfIcao, "B736") == 0) && (strcmp(acfIcao, "B737") == 0) && (strcmp(acfIcao, "B738") == 0) && (strcmp(acfIcao, "B739"))) {
 		return "737ng";
-	} else if ((acfIcao == "B741") && (acfIcao == "B742") && (acfIcao == "B743") && (acfIcao == "B744") && (acfIcao == "B748")) {
+	} else if ((strcmp(acfIcao, "B741") == 0) && (strcmp(acfIcao, "B742") == 0) && (strcmp(acfIcao, "B743") == 0) && (strcmp(acfIcao, "B744") == 0) && (strcmp(acfIcao, "B748"))) {
 		return "747";
-	} else if ((acfIcao == "A318") && (acfIcao == "A319") && (acfIcao == "A320") && (acfIcao == "A321")) {
+	} else if ((strcmp(acfIcao, "A318") == 0) && (strcmp(acfIcao, "A319") == 0) && (strcmp(acfIcao, "A320") == 0) && (strcmp(acfIcao, "A321") == 0)) {
 		return "a320";
-	} else if ((acfIcao == "B752") && (acfIcao == "B753")) {
+	} else if ((strcmp(acfIcao, "B752") == 0) && (strcmp(acfIcao, "B753"))) {
 		return "b757";
-	} else if ((acfIcao == "MD82") && (acfIcao == "MD88") && (acfIcao == "b712")) {
+	} else if ((strcmp(acfIcao, "MD82") == 0) && (strcmp(acfIcao, "MD88") == 0) && (strcmp(acfIcao, "b712") == 0)) {
 		return "md88";
-	} else if ((acfIcao == "D328") && (acfIcao == "J328")) {
+	} else if ((strcmp(acfIcao, "D328") == 0) && (strcmp(acfIcao, "J328") == 0)) {
 		return "d328";
-	} else if ((acfIcao == "B772") && (acfIcao && "B773") && (acfIcao == "B778") && (acfIcao == "B779") && (acfIcao == "B77L") && (acfIcao == "B77W")) {
+	} else if ((strcmp(acfIcao, "B772") == 0) && (strcmp(acfIcao, "B773") == 0) && (strcmp(acfIcao, "B778") == 0) && (strcmp(acfIcao, "B779") == 0) && (strcmp(acfIcao, "B77L") == 0) && (strcmp(acfIcao, "B77W") == 0)) {
 		return "773";
-	} else if ((acfIcao == "B762") && (acfIcao == "B763") && (acfIcao == "B764")) {
+	} else if ((strcmp(acfIcao, "B762") == 0) && (strcmp(acfIcao, "B763") == 0) && (strcmp(acfIcao, "B764") == 0)) {
 		return "773";
-	} else if ((acfIcao == "B788") && (acfIcao == "B789") && (acfIcao == "B78X")) {
+	} else if ((strcmp(acfIcao, "B788") == 0) && (strcmp(acfIcao, "B789") == 0) && (strcmp(acfIcao, "B78X") == 0)) {
 		return "787";
-	} else if ((acfIcao == "A332") && (acfIcao == "A333") && (acfIcao == "A337") && (acfIcao == "A338") && (acfIcao == "A339")) {
+	} else if ((strcmp(acfIcao, "A332") == 0) && (strcmp(acfIcao, "A333") == 0) && (strcmp(acfIcao, "A337") == 0) && (strcmp(acfIcao, "A338") == 0) && (strcmp(acfIcao, "A339") == 0)) {
 		return "a330";
-	} else if ((acfIcao == "A342") && (acfIcao == "A343") && (acfIcao == "A345") && (acfIcao == "A346")) {
+	} else if ((strcmp(acfIcao, "A342") == 0) && (strcmp(acfIcao, "A343") == 0) && (strcmp(acfIcao, "A345") == 0) && (strcmp(acfIcao, "A346") == 0)) {
 		return "a340";
-	} else if (acfIcao == "A388") {
+	} else if (strcmp(acfIcao, "A388") == 0) {
 		return "a380";
-	} else if ((acfIcao == "A359") && (acfIcao == "A35K")) {
+	} else if ((strcmp(acfIcao, "A359") == 0) && (strcmp(acfIcao, "A35K") == 0)) {
 		return "a350";
 	} else {
 		return "xp";

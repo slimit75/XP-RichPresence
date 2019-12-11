@@ -15,6 +15,7 @@
     <ProjectGuid>{5FF6AD6B-7A20-487D-8D71-0E124AF0FC30}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>XPRichPresence</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
@@ -100,6 +101,7 @@
       <CompileAsManaged>
       </CompileAsManaged>
       <SupportJustMyCode>true</SupportJustMyCode>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>
@@ -115,6 +117,7 @@
       <ForceFileOutput>
       </ForceFileOutput>
       <ProgramDatabaseFile />
+      <DataExecutionPrevention>false</DataExecutionPrevention>
     </Link>
     <ProjectReference />
   </ItemDefinitionGroup>

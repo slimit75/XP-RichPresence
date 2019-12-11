@@ -13,15 +13,14 @@
 #include "discord.h"
 #include "XPLMUtilities.h"
 #include <array>
+#include <string>
 
 struct DiscordState {
 	discord::User currentUser;
 	std::unique_ptr<discord::Core> core;
 };
 
-namespace {
-	volatile bool interrupted{ false };
-}
+namespace {volatile bool interrupted{ false };}
 
 DiscordState state{};
 discord::Core* core{}; // LNK2001/2019?
@@ -49,6 +48,4 @@ void initRP() {
 	state.core->ActivityManager().RegisterSteam(1938123); // LNK2001/2019
 }
 
-void runCallback() {
-	::core->RunCallbacks(); // LNK2001/2019
-}
+void runCallback() {::core->RunCallbacks();} // LNK2001/2019
