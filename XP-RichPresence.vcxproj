@@ -58,6 +58,7 @@
     <TargetName>XP-RichPresence</TargetName>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
     <RunCodeAnalysis>true</RunCodeAnalysis>
+    <LinkIncremental>true</LinkIncremental>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -109,17 +110,24 @@
       <OptimizeReferences>
       </OptimizeReferences>
       <AdditionalLibraryDirectories>Discord-LIB\x86_64;XP-SDK\Libraries\Win;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>discord_game_sdk.dll.lib;Opengl32.lib;odbc32.lib;odbccp32.lib;XPLM_64.lib;XPWidgets_64.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Opengl32.lib;odbc32.lib;odbccp32.lib;XPLM_64.lib;XPWidgets_64.lib;discord_game_sdk.dll.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <TreatLinkerWarningAsErrors>
       </TreatLinkerWarningAsErrors>
       <AdditionalOptions>
       </AdditionalOptions>
-      <ForceFileOutput>
-      </ForceFileOutput>
       <ProgramDatabaseFile />
       <DataExecutionPrevention>false</DataExecutionPrevention>
+      <ShowProgress>LinkVerbose</ShowProgress>
+      <Version>
+      </Version>
+      <LinkStatus>true</LinkStatus>
+      <IgnoreSpecificDefaultLibraries>
+      </IgnoreSpecificDefaultLibraries>
     </Link>
     <ProjectReference />
+    <ProjectReference>
+      <UseLibraryDependencyInputs>true</UseLibraryDependencyInputs>
+    </ProjectReference>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Files\settingsMan.cpp" />

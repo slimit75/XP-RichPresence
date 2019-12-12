@@ -78,9 +78,6 @@ char* getAircraftIcon() {
 	XPLMDebugString(acfIcao);
 
 	// Aircraft Icon Logic
-	// TODO: Change logic to actually work
-
-	//((strcmp(text, "false") == 0)
 	if ((strcmp(acfIcao, "E170") == 0) && (strcmp(acfIcao, "E175") == 0) && (strcmp(acfIcao, "E190") == 0) && (strcmp(acfIcao, "E195") == 0)) {
 		return "e-jets";
 	} else if (strcmp(acfIcao, "DR40") == 0) {
@@ -141,6 +138,7 @@ void draw_settings(XPLMWindowID in_window_id, void* in_refcon) {
 	int l, t, r, b;
 	XPLMGetWindowGeometry(in_window_id, &l, &t, &r, &b);
 	float col_white[] = { 1.0, 1.0, 1.0 };
+	float col_black[] = { 0.0, 0.0, 0.0 };
 
 	XPLMDrawString(col_white, l + 10, t - 20, "Settings (non-functional right now):", NULL, xplmFont_Proportional); // text warning of lack of functionality
 	
@@ -156,7 +154,7 @@ void draw_settings(XPLMWindowID in_window_id, void* in_refcon) {
 	XPLMDrawString(col_white, l + 30, t - 105, "Open Window on Start", NULL, xplmFont_Proportional);
 	XPDrawElement(l + 10, t - 107, l + 20, t - 97, xpElement_CheckBox, 0);
 
-	XPLMDrawString(col_white, l + 20, b + 20, "Save & Exit", NULL, xplmFont_Proportional);
+	XPLMDrawString(col_black, l + 20, b + 20, "Save & Exit", NULL, xplmFont_Proportional);
 	XPDrawElement(l + 10, b + 10, r - 10, b + 30, xpElement_PushButton, 0);
 
 	// TODO: Add button functionality
